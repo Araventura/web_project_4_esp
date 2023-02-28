@@ -1,4 +1,18 @@
+@font-face {
+    font-family: "Inter";
+    src: url("../styles/fonts/static/Inter-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Inter-Bold";
+    src: url("../../blocks/styles/fonts/static/Inter-Bold.ttf");
+}
+
 .page {
+    font-family: 'Inter', Verdana, Geneva, Tahoma, sans-serif;
     background-color: black;
     color: white;
+    margin: auto;
+    padding-left: 200px;
+    padding-right: 200px;
 }
