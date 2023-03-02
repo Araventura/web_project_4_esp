@@ -3,3 +3,7 @@
     cursor: pointer;
     border: none;
 }
+
+.card__like:hover {
+    opacity: 0.6;
+}
