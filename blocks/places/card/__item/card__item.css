@@ -1,6 +1,6 @@
 .card__item {
-    display: flex;
-    flex-direction: column;
     width: 282px;
     height: 361px;
+    background-color: white;
+    border-radius: 4%;
 }
