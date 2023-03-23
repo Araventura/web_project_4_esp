@@ -65,13 +65,18 @@ function getCardElement(data) {
 
     cardTitle.textContent = data.name;
     cardImage.src = data.link;
+    cardImage.addEventListener("click", showImage);
     cardImage.alt = data.alt;
     cardButton.addEventListener("click", clickLike);
-    // Agrega Like button 
 
     return cardElement;
 }
 
+// Function that opens image and centers it
+
+showImage() {
+
+}
 //Like button
 
 function clickLike(e) {
@@ -79,7 +84,7 @@ function clickLike(e) {
 
 }
 
-//Save Popup
+//Save Popup - 
 
 function savePopup() {
 
@@ -101,6 +106,8 @@ function handleEditButton() {
     popupTitle.textContent = "Editar Perfil";
     saveButton.textContent = "Guardar";
 
+    saveButton.removeEventListener("click", addCard)
+    saveButton.addEventListener("click", savePopup)
     openPopup(popup);
 }
 
@@ -127,9 +134,27 @@ function openAddPopup() {
     descriptionInput.setAttribute("placeholder", "Enlace a la imagen");
     nameInput.value = "";
     descriptionInput.value = "";
-    
 
+    saveButton.removeEventListener("click", savePopup)
+    saveButton.addEventListener("click", addCard)
 } 
+
+function addCard() {
+    const newCard = {
+        name: "",
+        link: "",
+        alt: ""
+    }
+
+    newCard.name = nameInput.value;
+    newCard.link = descriptionInput.value;
+    newCard.alt = newCard.name;
+
+    const card = getCardElement(newCard);
+    cardContainer.prepend(card);
+
+    buttonExit();
+}
 
 renderInitialCards();
   
