@@ -11,6 +11,11 @@
 @import url("../blocks/places/card/__like/card__like.css");
 @import url("../blocks/places/card/__title/card__title.css");
 @import url("../blocks/places/card/__wrapper/card__wrapper.css");
+@import url("../blocks/cover/cover.css");
+@import url("../blocks/cover/__image/cover__image.css");
+@import url("../blocks/cover/__backdrop/cover__backdrop.css");
+@import url("../blocks/cover/__subtitle/cover__subtitle.css");
+@import url("../blocks/cover/__wrapper/cover__wrapper.css");
 @import url("../blocks/profile/profile.css");
 @import url("../blocks/profile/__button/button.css");
 @import url("../blocks/profile/__description/profile__description.css");

@@ -11,6 +11,8 @@ const descriptionInput = document.querySelector("#input-description");
 const cardTemplate = document.querySelector("#card_template");
 const cardContainer = document.querySelector(".card");
 const popupTitle = document.querySelector(".popup__title");
+const cover = document.querySelector(".cover")
+const coverExitButton = document.querySelector("#cover-close-button");
 
 const initialCards = [
     {
@@ -74,9 +76,20 @@ function getCardElement(data) {
 
 // Function that opens image and centers it
 
-showImage() {
+function showImage(e) {
+    cover.classList.add("cover_clicked")
+    cover.querySelector(".cover__image").src = e.target.src;
+    cover.querySelector(".cover__subtitle").textContent = e.target.alt;
+    coverExitButton.addEventListener("click", coverExit);
 
 }
+
+function coverExit() {
+    console.log("Hola")
+    cover.classList.remove("cover_clicked");
+}
+
+
 //Like button
 
 function clickLike(e) {
@@ -97,7 +110,8 @@ function savePopup() {
 exitButton.addEventListener("click", buttonExit)
 
 function buttonExit() {
-    popup.classList.remove("popup_open")
+    popup.classList.remove("popup_open");
+    popup.classList.remove("cover__clicked");
 }
 
 function handleEditButton() {
