@@ -14,6 +14,7 @@ const popupTitle = document.querySelector(".popup__title");
 const cover = document.querySelector(".cover")
 const coverExitButton = document.querySelector("#cover-close-button");
 
+
 const initialCards = [
     {
       name: "Valle de Yosemite",
@@ -63,13 +64,15 @@ function getCardElement(data) {
     const cardElement = cardTemplateContent.cloneNode(true);
     const cardTitle = cardElement.querySelector(".card__title");
     const cardImage = cardElement.querySelector(".card__image");
-    const cardButton = cardElement.querySelector(".card__like")
+    const cardButton = cardElement.querySelector(".card__like");
+    const cardTrash = cardElement.querySelector(".card__trash");
 
     cardTitle.textContent = data.name;
     cardImage.src = data.link;
     cardImage.addEventListener("click", showImage);
     cardImage.alt = data.alt;
     cardButton.addEventListener("click", clickLike);
+    cardTrash.addEventListener("click", deleteCard);
 
     return cardElement;
 }
@@ -85,7 +88,6 @@ function showImage(e) {
 }
 
 function coverExit() {
-    console.log("Hola")
     cover.classList.remove("cover_clicked");
 }
 
@@ -95,6 +97,15 @@ function coverExit() {
 function clickLike(e) {
     e.target.classList.toggle("card__like_active");
 
+}
+
+//Trash button
+
+function deleteCard(e) {
+    console.log(e.target);
+    e.target.closest(".card__item").remove();
+    //e.target.parentNode.remove();
+    //cardElement.remove();
 }
 
 //Save Popup - 
