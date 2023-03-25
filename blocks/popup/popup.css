@@ -6,9 +6,14 @@
     top: 0;
     align-items: center;
     justify-content: center;
-    display: none;
+    opacity: 0;
+    /* transition: visibility 1s, opacity 0s linear;*/
+    display: flex;
+    visibility: hidden;
 }
 
 .popup_open {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    /* transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;  - solucion alterna*/
 }
