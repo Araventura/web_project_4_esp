@@ -19,32 +19,32 @@ const initialCards = [
     {
       name: "Valle de Yosemite",
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-      alt: "A photo of Yosemite close to water"
+      alt: "Valle de Yosemite"
     },
     {
       name: "Lago Louise",
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-      alt: "Photo of lake Louise with snow mountains"
+      alt: "Lago Louise"
     },
     {
       name: "Montañas Calvas",
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-      alt: "Calvas mountains with a sunset"
+      alt: "Montañas Calvas"
     },
     {
       name: "Latemar",
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-      alt: "Latemar with a night sky"
+      alt: "Latemar"
     },
     {
       name: "Parque Nacional de la Vanoise",
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-      alt: "Vanoise during the day with clear sky"
+      alt: "Parque Nacional de la Vanoise"
     },
     {
       name: "Lago di Braies",
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-      alt: "Lake di Braies with two red canopies"
+      alt: "Lake di Braies"
     }
 ]
 
@@ -91,12 +91,21 @@ function coverExit() {
     cover.classList.remove("cover_clicked");
 }
 
+//Function to aid with transition
+
+// function popupFade() {
+//     setTimeout(() => {
+//         console.log("Hola")
+//         popup.classList.add("popup_hide")
+//         cover.classList.remove("cover_clicked")
+//     }, 1000);
+    
+// }
 
 //Like button
 
 function clickLike(e) {
     e.target.classList.toggle("card__like_active");
-
 }
 
 //Trash button
@@ -104,8 +113,6 @@ function clickLike(e) {
 function deleteCard(e) {
     console.log(e.target);
     e.target.closest(".card__item").remove();
-    //e.target.parentNode.remove();
-    //cardElement.remove();
 }
 
 //Save Popup - 
@@ -116,13 +123,14 @@ function savePopup() {
     profileInfo.textContent = descriptionInput.value;
 
     buttonExit();
+
 }
 
 exitButton.addEventListener("click", buttonExit)
 
 function buttonExit() {
     popup.classList.remove("popup_open");
-    popup.classList.remove("cover__clicked");
+
 }
 
 function handleEditButton() {
@@ -141,13 +149,14 @@ function handleEditButton() {
 editButton.addEventListener("click", handleEditButton)
 
 function openPopup(popupElement) {
-    popupElement.classList.add("popup_open")
+    popupElement.classList.add("popup_open");
 }
 
 //add photo button
 addButton.addEventListener("click", openAddPopup)
 
 function openAddPopup() {
+    popup.classList.remove("popup_hide");
     popup.classList.add("popup_open");
     const popupCreate = document.querySelector(".popup__button");
     const nameInput = document.querySelector("#input-name");
@@ -162,6 +171,7 @@ function openAddPopup() {
 
     saveButton.removeEventListener("click", savePopup)
     saveButton.addEventListener("click", addCard)
+
 } 
 
 function addCard() {
@@ -181,10 +191,10 @@ function addCard() {
     buttonExit();
 }
 
+setTimeout(() => {
+    const page = document.querySelector(".page");
+    page.classList.remove("preload")
+})
+
 renderInitialCards();
   
-//crear una clase function Person (name, age, email) {
-    //this.name = name;
-    //this.age = age
-    //}
-//const ara = new Person ("ara", 30)

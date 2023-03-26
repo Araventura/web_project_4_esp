@@ -2,6 +2,8 @@
     display: block;
     padding-top: 45px;
     padding-bottom: 68px;
+    position: relative;
+    z-index: 1;
 }
 
 @media screen and (max-width: 320px) {

@@ -4,4 +4,7 @@
     position: absolute;
     z-index: 1;
     border-radius: 30%;
+    background: none;
+    top: 18px;
+    right: 15px;
 }

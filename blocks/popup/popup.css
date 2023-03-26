@@ -7,13 +7,13 @@
     align-items: center;
     justify-content: center;
     opacity: 0;
-    /* transition: visibility 1s, opacity 0s linear;*/
+    transition: visibility 1s, opacity 1s linear;
     display: flex;
     visibility: hidden;
+    z-index: 3;
 }
 
 .popup_open {
     opacity: 1;
     visibility: visible;
-    /* transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;  - solucion alterna*/
 }
