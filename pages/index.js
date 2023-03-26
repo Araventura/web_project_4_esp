@@ -91,17 +91,6 @@ function coverExit() {
     cover.classList.remove("cover_clicked");
 }
 
-//Function to aid with transition
-
-// function popupFade() {
-//     setTimeout(() => {
-//         console.log("Hola")
-//         popup.classList.add("popup_hide")
-//         cover.classList.remove("cover_clicked")
-//     }, 1000);
-    
-// }
-
 //Like button
 
 function clickLike(e) {

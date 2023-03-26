@@ -17,6 +17,7 @@
 @import url("../blocks/cover/__backdrop/cover__backdrop.css");
 @import url("../blocks/cover/__subtitle/cover__subtitle.css");
 @import url("../blocks/cover/__wrapper/cover__wrapper.css");
+@import url("../blocks/cover/__close-button/cover__close-button.css");
 @import url("../blocks/profile/profile.css");
 @import url("../blocks/profile/__button/button.css");
 @import url("../blocks/profile/__description/profile__description.css");
