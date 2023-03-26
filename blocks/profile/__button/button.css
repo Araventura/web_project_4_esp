@@ -20,10 +20,6 @@
     margin-left: auto;
 }
 
-.profile__button-add:hover {
-    opacity: 0.8;
-}
-
 @media screen and (max-width: 320px) {
     .profile__button-edit {
         width: 18px;
