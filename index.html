@@ -39,12 +39,12 @@
 
       <div class="popup">
         <div class="popup__container">
-          <div class="popup__close-button" id="popup-close-button"><img src="./images/CloseIcon.png" alt="Closing Icon"></div>
+          <div class="popup__close-button" id="popup-close-button">
+            <img src="./images/CloseIcon.png" alt="Closing Icon" />
+          </div>
           <h2 class="popup__title">Editar perfil</h2>
-          <input class="popup__input" id="input-name">
-          </input>
-          <input class="popup__input" id="input-description">
-          </input>
+          <input class="popup__input" id="input-name" />
+          <input class="popup__input" id="input-description" />
           <button class="popup__button">Guardar</button>
         </div>
         <div class="popup__backdrop"></div>
@@ -52,16 +52,17 @@
 
       <div class="cover">
         <div class="cover__wrapper">
-          <div class="popup__close-button" id="cover-close-button"><img src="./images/CloseIcon.png" alt="Closing Icon"></div>
-          <img class="cover__image" src="" alt="">
+          <div class="popup__close-button" id="cover-close-button">
+            <img src="./images/CloseIcon.png" alt="Closing Icon" />
+          </div>
+          <img class="cover__image" src="#" alt="" />
           <h3 class="cover__subtitle"></h3>
         </div>
         <div class="cover__backdrop"></div>
       </div>
 
       <section class="places">
-        <ul class="card">
-        </ul>
+        <ul class="card"></ul>
       </section>
 
       <footer class="footer">
@@ -71,13 +72,9 @@
       <template id="card_template">
         <li class="card__item">
           <button class="card__trash">
-            <img src="./images/trash.png" alt="Trash Button">
+            <img src="./images/trash.png" alt="Trash Button" />
           </button>
-          <img
-            class="card__image"
-            src=""
-            alt=""
-          />
+          <img class="card__image" src="#" alt="" />
           <div class="card__wrapper">
             <span class="card__title"></span>
             <button class="card__like">
@@ -86,7 +83,6 @@
           </div>
         </li>
       </template>
-
     </main>
     <script src="./pages/index.js"></script>
   </body>
