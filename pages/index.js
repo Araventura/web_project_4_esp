@@ -48,17 +48,23 @@ const initialCards = [
     }
 ]
 
+
+//  Render initial cards
+// Function render Initial Cards obtains data for each and every card available in the object.
 function renderInitialCards() {
     initialCards.forEach((dataCard) => {
         renderCard(dataCard, cardContainer)
     })
 }
 
+// renderCard
+// This function obtains one card and adds it at the beginning of the objetc
 function renderCard(data, cardContainer) {
     cardContainer.prepend(getCardElement(data))
 }
 
-// Create card element
+// getCardElement
+// This function creates card element using template from HTML
 function getCardElement(data) {
     const cardTemplateContent = cardTemplate.content.querySelector(".card__item");
     const cardElement = cardTemplateContent.cloneNode(true);
@@ -77,6 +83,7 @@ function getCardElement(data) {
     return cardElement;
 }
 
+// showImage
 // Function that opens image and centers it
 
 function showImage(e) {
@@ -87,33 +94,30 @@ function showImage(e) {
 
 }
 
+// coverExit
+// Removes the image focus from the center of the page.
 function coverExit() {
     cover.classList.remove("cover_clicked");
 }
 
-//Like button
+// clickLike
+//Like button - sets it as liked or unliked when clicked
 
 function clickLike(e) {
     e.target.classList.toggle("card__like_active");
 }
 
-//Trash button
+// deleteCard
+//Trash button - deletes image completely.
 
 function deleteCard(e) {
     console.log(e.target);
     e.target.closest(".card__item").remove();
 }
 
-//Save Popup - 
 
-function savePopup() {
-
-    profileName.textContent = nameInput.value;
-    profileInfo.textContent = descriptionInput.value;
-
-    buttonExit();
-
-}
+// buttonExit
+// Closes popup window when clicked
 
 exitButton.addEventListener("click", buttonExit)
 
@@ -122,31 +126,45 @@ function buttonExit() {
 
 }
 
+//OPEN edit popup -
+editButton.addEventListener("click", handleEditButton)
+
+function openPopup() {
+    popup.classList.add("popup_open");
+}
+
+
+// handleEditButton
+// displays a window for user to modify profile info, it will be reused to add a card
 function handleEditButton() {
     nameInput.value = profileName.textContent;
     descriptionInput.value = profileInfo.textContent;
     popupTitle.textContent = "Editar Perfil";
     saveButton.textContent = "Guardar";
 
+  // This is to remove event listener that was added in openAddPopup
     saveButton.removeEventListener("click", addCard)
     saveButton.addEventListener("click", savePopup)
-    openPopup(popup);
+    openPopup();
 }
 
+//Save Popup 
+// When clicked, saves edited data from profile info. Will be reused to add a card.
 
-//OPEN edit popup
-editButton.addEventListener("click", handleEditButton)
+function savePopup() {
 
-function openPopup(popupElement) {
-    popupElement.classList.add("popup_open");
+  profileName.textContent = nameInput.value;
+  profileInfo.textContent = descriptionInput.value;
+
+  buttonExit();
+
 }
 
-//add photo button
+//This function resuses popup to add a card
 addButton.addEventListener("click", openAddPopup)
 
 function openAddPopup() {
-    popup.classList.remove("popup_hide");
-    popup.classList.add("popup_open");
+    openPopup();
     const popupCreate = document.querySelector(".popup__button");
     const nameInput = document.querySelector("#input-name");
     const descriptionInput = document.querySelector("#input-description");
@@ -155,24 +173,24 @@ function openAddPopup() {
     popupCreate.textContent = "Crear";
     nameInput.setAttribute("placeholder", "Titulo");
     descriptionInput.setAttribute("placeholder", "Enlace a la imagen");
+  
     nameInput.value = "";
     descriptionInput.value = "";
-
-    saveButton.removeEventListener("click", savePopup)
+  
+  // This is to remove event listener that was added in handleEditButton
+    saveButton.removeEventListener("click", savePopup) 
     saveButton.addEventListener("click", addCard)
 
 } 
 
+// function that obtains data and replaces it
+// corrected from feedback1
 function addCard() {
     const newCard = {
-        name: "",
-        link: "",
-        alt: ""
+        name: nameInput.value,
+        link: descriptionInput.value,
+        alt: newCard.name
     }
-
-    newCard.name = nameInput.value;
-    newCard.link = descriptionInput.value;
-    newCard.alt = newCard.name;
 
     const card = getCardElement(newCard);
     cardContainer.prepend(card);
@@ -180,9 +198,11 @@ function addCard() {
     buttonExit();
 }
 
-setTimeout(() => {
+
+// prevents popup from showing when reloading website.
+document.addEventListener("DOMContentLoaded", () => {
     const page = document.querySelector(".page");
-    page.classList.remove("preload")
+  page.classList.remove("preload");
 })
 
 renderInitialCards();
