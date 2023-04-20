@@ -12,6 +12,11 @@
     position: absolute;
 }
 
+.popup__container form {
+    display: flex;
+    flex-direction: column;
+}
+
 @media screen and (max-width: 320px) {
     .popup__container {
         width: 282px;

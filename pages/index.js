@@ -1,19 +1,14 @@
-const popup = document.querySelector(".popup");
-const editButton = document.querySelector(".profile__button-edit");
-const saveButton = document.querySelector(".popup__button");
-const exitButton = document.querySelector(".popup__close-button");
+const popupProfile = document.querySelector("#popup-profile");
+const popupAddCard = document.querySelector("#popup-card");
 const likeButtons = document.querySelectorAll(".card__like");
-const addButton = document.querySelector(".profile__button-add");
 const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__description");
 const nameInput = document.querySelector("#input-name");
 const descriptionInput = document.querySelector("#input-description");
 const cardTemplate = document.querySelector("#card_template");
 const cardContainer = document.querySelector(".card");
-const popupTitle = document.querySelector(".popup__title");
 const cover = document.querySelector(".cover")
 const coverExitButton = document.querySelector("#cover-close-button");
-
 
 const initialCards = [
     {
@@ -116,36 +111,30 @@ function deleteCard(e) {
 }
 
 
-// closePopup
-// Closes popup window when clicked
-
-exitButton.addEventListener("click", closePopup)
-
-function closePopup() {
-    popup.classList.remove("popup_open");
+function closeProfilePopup() {
+    popupProfile.classList.remove("popup_open");
 
 }
 
-//OPEN edit popup -
-editButton.addEventListener("click", handleEditButton)
-
-function openPopup() {
-    popup.classList.add("popup_open");
+function closeAddCardPopup() {
+  popupAddCard.classList.remove("popup_open");
 }
 
+function showProfilePopup() {
+    popupProfile.classList.add("popup_open");
+}
+
+function showAddCardPopup() {
+  popupAddCard.classList.add("popup_open");
+}
 
 // handleEditButton
 // displays a window for user to modify profile info, it will be reused to add a card
 function handleEditButton() {
     nameInput.value = profileName.textContent;
     descriptionInput.value = profileInfo.textContent;
-    popupTitle.textContent = "Editar Perfil";
-    saveButton.textContent = "Guardar";
 
-  // This is to remove event listener that was added in openAddCardPopup
-    saveButton.removeEventListener("click", addCard)
-    saveButton.addEventListener("click", saveProfileDetails)
-    openPopup();
+    showProfilePopup();
 }
 
 //saveProfileDetails 
@@ -156,47 +145,66 @@ function saveProfileDetails(e) {
   profileName.textContent = nameInput.value;
   profileInfo.textContent = descriptionInput.value;
 
-  closePopup();
+  closeProfilePopup();
   
 }
 
-//This function resuses popup to add a card
-addButton.addEventListener("click", openAddCardPopup)
-
 function openAddCardPopup() {
-    openPopup();
-    const popupCreate = document.querySelector(".popup__button");
-    const nameInput = document.querySelector("#input-name");
-    const descriptionInput = document.querySelector("#input-description");
+    showAddCardPopup();
+    const titleInput = document.querySelector("#input-title");
+    const descriptionInput = document.querySelector("#input-url");
 
-    popupTitle.textContent = "Nuevo Lugar";
-    popupCreate.textContent = "Crear";
-    nameInput.setAttribute("placeholder", "Titulo");
+    titleInput.setAttribute("placeholder", "Titulo");
     descriptionInput.setAttribute("placeholder", "Enlace a la imagen");
   
-    nameInput.value = "";
+    titleInput.value = "";
     descriptionInput.value = "";
-  
-  // This is to remove event listener that was added in handleEditButton
-    saveButton.removeEventListener("click", saveProfileDetails) 
-    saveButton.addEventListener("click", addCard)
 
 } 
 
+//this function adds event listeners to buttons on app load
+function setupEventListeners() {
+  const createCardButton = document.querySelector("#create-card-button");
+  const saveProfileButton = document.querySelector(".popup__button");
+  const editButton = document.querySelector(".profile__button-edit");
+  const closeProfileButton = document.querySelector("#popup-close-profile");
+  const closeAddButton = document.querySelector("#popup-close-add-card");
+  const addButton = document.querySelector(".profile__button-add");
+
+  //OPEN edit popupProfile -
+  editButton.addEventListener("click", handleEditButton)
+
+  //This function resuses popup to add a card
+  addButton.addEventListener("click", openAddCardPopup)
+
+  // closeProfilePopup
+  // Closes popupProfile window when clicked
+
+  closeProfileButton.addEventListener("click", closeProfilePopup)
+
+  //closeAddButton
+  //function that closes add popup when clicked
+  closeAddButton.addEventListener("click", closeAddCardPopup);
+  createCardButton.addEventListener("click", addCard);
+  saveProfileButton.addEventListener("click", saveProfileDetails);
+}
 // function that obtains data and replaces it
 // corrected from feedback1
 function addCard(e) {
-    e.preventDefault();
+  e.preventDefault();
+  
+  const titleInput = document.querySelector("#input-title");
+  const urlInput = document.querySelector("#input-url");
     const newCard = {
-        name: nameInput.value,
-        link: descriptionInput.value,
-        alt: nameInput.value
+        name: titleInput.value,
+        link: urlInput.value,
+        alt: titleInput.value
     }
 
     const card = getCardElement(newCard);
     cardContainer.prepend(card);
 
-    closePopup();
+    closeAddCardPopup();
 }
 
 
@@ -207,4 +215,5 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 renderInitialCards();
+setupEventListeners();
   
