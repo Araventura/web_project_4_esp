@@ -75,7 +75,7 @@ function getCardElement(data) {
 
     cardTitle.textContent = data.name;
     cardImage.src = data.link;
-    cardImage.addEventListener("click", showImage);
+    cardImage.addEventListener("click", openFullScreenImage);
     cardImage.alt = data.alt;
     cardButton.addEventListener("click", clickLike);
     cardTrash.addEventListener("click", deleteCard);
@@ -83,20 +83,20 @@ function getCardElement(data) {
     return cardElement;
 }
 
-// showImage
+// openFullScreenImage
 // Function that opens image and centers it
 
-function showImage(e) {
+function openFullScreenImage(e) {
     cover.classList.add("cover_clicked")
     cover.querySelector(".cover__image").src = e.target.src;
     cover.querySelector(".cover__subtitle").textContent = e.target.alt;
-    coverExitButton.addEventListener("click", coverExit);
+    coverExitButton.addEventListener("click", closeFullScreenImage);
 
 }
 
-// coverExit
+// closeFullScreenImage
 // Removes the image focus from the center of the page.
-function coverExit() {
+function closeFullScreenImage() {
     cover.classList.remove("cover_clicked");
 }
 
@@ -116,12 +116,12 @@ function deleteCard(e) {
 }
 
 
-// buttonExit
+// closePopup
 // Closes popup window when clicked
 
-exitButton.addEventListener("click", buttonExit)
+exitButton.addEventListener("click", closePopup)
 
-function buttonExit() {
+function closePopup() {
     popup.classList.remove("popup_open");
 
 }
@@ -142,28 +142,28 @@ function handleEditButton() {
     popupTitle.textContent = "Editar Perfil";
     saveButton.textContent = "Guardar";
 
-  // This is to remove event listener that was added in openAddPopup
+  // This is to remove event listener that was added in openAddCardPopup
     saveButton.removeEventListener("click", addCard)
-    saveButton.addEventListener("click", savePopup)
+    saveButton.addEventListener("click", saveProfileDetails)
     openPopup();
 }
 
-//Save Popup 
-// When clicked, saves edited data from profile info. Will be reused to add a card.
+//saveProfileDetails 
+// When clicked, saves edited data from profile info. 
 
-function savePopup() {
+function saveProfileDetails() {
 
   profileName.textContent = nameInput.value;
   profileInfo.textContent = descriptionInput.value;
 
-  buttonExit();
+  closePopup();
 
 }
 
 //This function resuses popup to add a card
-addButton.addEventListener("click", openAddPopup)
+addButton.addEventListener("click", openAddCardPopup)
 
-function openAddPopup() {
+function openAddCardPopup() {
     openPopup();
     const popupCreate = document.querySelector(".popup__button");
     const nameInput = document.querySelector("#input-name");
@@ -178,7 +178,7 @@ function openAddPopup() {
     descriptionInput.value = "";
   
   // This is to remove event listener that was added in handleEditButton
-    saveButton.removeEventListener("click", savePopup) 
+    saveButton.removeEventListener("click", saveProfileDetails) 
     saveButton.addEventListener("click", addCard)
 
 } 
@@ -195,7 +195,7 @@ function addCard() {
     const card = getCardElement(newCard);
     cardContainer.prepend(card);
 
-    buttonExit();
+    closePopup();
 }
 
 
