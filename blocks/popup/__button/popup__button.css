@@ -17,12 +17,12 @@
     opacity: 0.8;
 }
 
-.popup__button-error_inactive {
+.popup__button-inactive {
     background-color: #F5F5F5;
     opacity: 0.2;
-    color: #000000   ;
+    color: #000000;
 }
 
-.popup__button-error-active {
+.popup__button-active {
 
 }
