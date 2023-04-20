@@ -37,18 +37,32 @@
         </button>
       </section>
 
-      <div class="popup">
-        <div class="popup__container">
-          <div class="popup__close-button" id="popup-close-button">
-            <img src="./images/CloseIcon.png" alt="Closing Icon" />
+      <form novalidate>
+        <div class="popup">
+          <div class="popup__container">
+            <div class="popup__close-button" id="popup-close-button">
+              <img src="./images/CloseIcon.png" alt="Closing Icon" />
+            </div>
+            <h2 class="popup__title">Editar perfil</h2>
+            <input
+              class="popup__input"
+              id="input-name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <input
+              class="popup__input"
+              id="input-description"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <button class="popup__button">Guardar</button>
           </div>
-          <h2 class="popup__title">Editar perfil</h2>
-          <input class="popup__input" id="input-name" />
-          <input class="popup__input" id="input-description" />
-          <button class="popup__button">Guardar</button>
+          <div class="popup__backdrop"></div>
         </div>
-        <div class="popup__backdrop"></div>
-      </div>
+      </form>
 
       <div class="cover">
         <div class="cover__wrapper">
