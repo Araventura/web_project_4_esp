@@ -151,13 +151,13 @@ function handleEditButton() {
 //saveProfileDetails 
 // When clicked, saves edited data from profile info. 
 
-function saveProfileDetails() {
-
+function saveProfileDetails(e) {
+  e.preventDefault();
   profileName.textContent = nameInput.value;
   profileInfo.textContent = descriptionInput.value;
 
   closePopup();
-
+  
 }
 
 //This function resuses popup to add a card
@@ -185,11 +185,12 @@ function openAddCardPopup() {
 
 // function that obtains data and replaces it
 // corrected from feedback1
-function addCard() {
+function addCard(e) {
+    e.preventDefault();
     const newCard = {
         name: nameInput.value,
         link: descriptionInput.value,
-        alt: newCard.name
+        alt: nameInput.value
     }
 
     const card = getCardElement(newCard);
