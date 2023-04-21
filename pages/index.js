@@ -1,3 +1,5 @@
+import { enableValidation } from "./validate.js";
+
 const popupProfile = document.querySelector("#popup-profile");
 const popupAddCard = document.querySelector("#popup-card");
 const likeButtons = document.querySelectorAll(".card__like");
@@ -110,7 +112,6 @@ function deleteCard(e) {
     e.target.closest(".card__item").remove();
 }
 
-
 function closeProfilePopup() {
     popupProfile.classList.remove("popup_open");
 
@@ -214,6 +215,10 @@ document.addEventListener("DOMContentLoaded", () => {
   page.classList.remove("preload");
 })
 
+enableValidation({
+  formSelector: ".form",
+  popupInputSelector: ".popup__input"
+});
 renderInitialCards();
 setupEventListeners();
   
