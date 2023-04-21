@@ -1,0 +1,15 @@
+.popup__error-message {
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.popup__error-message_type_inactive {
+    display: block;
+    opacity: 0;
+}
+
+.popup__error-message_type_active {
+    display: block;
+    opacity: 1;
+}

@@ -4,8 +4,8 @@
     font-weight: 400;
     border: none;
     border-bottom: 1px lightgray solid;
-    margin-bottom: 30px;
     padding-bottom: 13px;
+    margin-bottom: 7px;
 }
 
 .popup__input_error_invalid {
