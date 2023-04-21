@@ -42,9 +42,9 @@
           <div class="popup__close-button" id="popup-close-profile">
             <img src="./images/CloseIcon.png" alt="Closing Icon" />
           </div>
-          <form novalidate>
+          <form class="form" novalidate>
             <h2 class="popup__title">Editar perfil</h2>
-            <div class="popup__input-wrapper">
+            <div class="popup__input-wrapper" id="input-name-wrapper">
               <input
                 class="popup__input"
                 id="input-name"
@@ -52,21 +52,16 @@
                 maxlength="40"
                 required
               />
-              <span class="popup__error-message"
-                >Por favor rellena este campo</span
-              >
+              <span
+                class="input-name__error-message popup__error-message"
+              ></span>
             </div>
 
-            <div class="popup__input-wrapper">
-              <input
-                type="url"
-                class="popup__input"
-                id="input-description"
-                required
-              />
-              <span class="popup__error-message"
-                >Por favor rellena este campo</span
-              >
+            <div class="popup__input-wrapper" id="input-description-wrapper">
+              <input class="popup__input" id="input-description" required />
+              <span
+                class="input-description__error-message popup__error-message"
+              ></span>
             </div>
             <button class="popup__button">Guardar</button>
           </form>
@@ -79,8 +74,8 @@
           <div class="popup__close-button" id="popup-close-add-card">
             <img src="./images/CloseIcon.png" alt="Closing Icon" />
           </div>
-          <form novalidate>
-            <div class="popup__input-wrapper">
+          <form class="form" novalidate>
+            <div class="popup__input-wrapper" id="input-title-wrapper">
               <h2 class="popup__title">Nuevo Lugar</h2>
               <input
                 class="popup__input"
@@ -89,11 +84,11 @@
                 maxlength="40"
                 required
               />
-              <span class="popup__error-message"
-                >Por favor rellena este campo</span
-              >
+              <span
+                class="input-title__error-message popup__error-message"
+              ></span>
             </div>
-            <div class="popup__input-wrapper">
+            <div class="popup__input-wrapper" id="input-url-wrapper">
               <input
                 type="url"
                 class="popup__input"
@@ -102,9 +97,9 @@
                 maxlength="200"
                 required
               />
-              <span class="popup__error-message"
-                >Por favor rellena este campo</span
-              >
+              <span
+                class="input-url__error-message popup__error-message"
+              ></span>
             </div>
             <button id="create-card-button" class="popup__button">Crear</button>
           </form>
@@ -146,6 +141,6 @@
         </li>
       </template>
     </main>
-    <script src="./pages/index.js"></script>
+    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>
