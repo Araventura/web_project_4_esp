@@ -21,8 +21,9 @@
     background-color: #F5F5F5;
     opacity: 0.2;
     color: #000000;
+    border: 1px gray solid;
 }
 
-.popup__button-active {
-
+.popup__button-inactive:hover {
+    opacity: 0.2;
 }
