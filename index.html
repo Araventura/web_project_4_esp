@@ -42,7 +42,7 @@
           <div class="popup__close-button" id="popup-close-profile">
             <img src="./images/CloseIcon.png" alt="Closing Icon" />
           </div>
-          <form class="form" novalidate>
+          <form id="form-edit-profile" class="form" novalidate>
             <h2 class="popup__title">Editar perfil</h2>
             <div class="popup__input-wrapper" id="input-name-wrapper">
               <input
@@ -58,7 +58,13 @@
             </div>
 
             <div class="popup__input-wrapper" id="input-description-wrapper">
-              <input class="popup__input" id="input-description" required />
+              <input
+                class="popup__input"
+                id="input-description"
+                minlength="2"
+                maxlength="200"
+                required
+              />
               <span
                 class="input-description__error-message popup__error-message"
               ></span>
@@ -74,7 +80,7 @@
           <div class="popup__close-button" id="popup-close-add-card">
             <img src="./images/CloseIcon.png" alt="Closing Icon" />
           </div>
-          <form class="form" novalidate>
+          <form id="form-card" class="form" novalidate>
             <div class="popup__input-wrapper" id="input-title-wrapper">
               <h2 class="popup__title">Nuevo Lugar</h2>
               <input
@@ -89,14 +95,7 @@
               ></span>
             </div>
             <div class="popup__input-wrapper" id="input-url-wrapper">
-              <input
-                type="url"
-                class="popup__input"
-                id="input-url"
-                minlength="2"
-                maxlength="200"
-                required
-              />
+              <input type="url" class="popup__input" id="input-url" required />
               <span
                 class="input-url__error-message popup__error-message"
               ></span>
