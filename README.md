@@ -1,9 +1,10 @@
 # Proyecto 4: Alrededor de los Estados Unidos
 
 ### Descripción general
+ Este proyecto se ha centralizado en la implementacion de formularios. Los lenguajes usados son HTML, CSS y JS.
+ Inspirado en la revolucionaria appliacion de Instagram, el usuario puede agregar fotos obtenidas con un link, dar "me gusta" y borrar fotos.
+ Todo mediante un UX/UI interactivo y atractivo al usuario. Se observan animaciones al cerrar y abrir ventanas que fueron hechas para hacer las transiciones mas suaves al ojo humano.
 
-* Figma
-* Imágenes
 
 **Figma**
 
@@ -13,4 +14,5 @@
 
 A la hora de trabajar, debes optar por exportar las imágenes directamente desde Figma; te recomendamos hacerlo para practicar más. No olvides optimizarlas [aquí](https://tinypng.com/), para que tu proyecto cargue más rápido. 
 
-¡Esperamos que te diviertas con JavaScript!
+¡Espero que disfrutes!
+Ara Ventura
