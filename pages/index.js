@@ -1,8 +1,7 @@
-import { enableValidation } from "./validate.js";
+import { enableValidation, toggleFormButton, resetInputValidation } from "./validate.js";
 
 const popupProfile = document.querySelector("#popup-profile");
 const popupAddCard = document.querySelector("#popup-card");
-const likeButtons = document.querySelectorAll(".card__like");
 const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__description");
 const nameInput = document.querySelector("#input-name");
@@ -94,26 +93,25 @@ function openFullScreenImage(e) {
 // closeFullScreenImage
 // Removes the image focus from the center of the page.
 function closeFullScreenImage() {
-    cover.classList.remove("cover_clicked");
+  cover.classList.remove("cover_clicked");
 }
 
 // clickLike
 //Like button - sets it as liked or unliked when clicked
 
 function clickLike(e) {
-    e.target.classList.toggle("card__like_active");
+  e.target.classList.toggle("card__like_active");
 }
 
 // deleteCard
 //Trash button - deletes image completely.
 
 function deleteCard(e) {
-    console.log(e.target);
-    e.target.closest(".card__item").remove();
+  e.target.closest(".card__item").remove();
 }
 
 function closeProfilePopup() {
-    popupProfile.classList.remove("popup_open");
+  popupProfile.classList.remove("popup_open");
 
 }
 
@@ -122,7 +120,7 @@ function closeAddCardPopup() {
 }
 
 function showProfilePopup() {
-    popupProfile.classList.add("popup_open");
+  popupProfile.classList.add("popup_open");
 }
 
 function showAddCardPopup() {
@@ -134,8 +132,10 @@ function showAddCardPopup() {
 function handleEditButton() {
     nameInput.value = profileName.textContent;
     descriptionInput.value = profileInfo.textContent;
-
-    showProfilePopup();
+    const form = document.querySelector("#form-edit-profile");
+  resetInputValidation(popupProfile);
+  toggleFormButton(form);
+  showProfilePopup();
 }
 
 //saveProfileDetails 
@@ -151,16 +151,18 @@ function saveProfileDetails(e) {
 }
 
 function openAddCardPopup() {
-    showAddCardPopup();
-    const titleInput = document.querySelector("#input-title");
-    const descriptionInput = document.querySelector("#input-url");
+  const titleInput = document.querySelector("#input-title");
+  const descriptionInput = document.querySelector("#input-url");
 
-    titleInput.setAttribute("placeholder", "Titulo");
-    descriptionInput.setAttribute("placeholder", "Enlace a la imagen");
+  titleInput.setAttribute("placeholder", "Titulo");
+  descriptionInput.setAttribute("placeholder", "Enlace a la imagen");
   
-    titleInput.value = "";
-    descriptionInput.value = "";
-
+  titleInput.value = "";
+  descriptionInput.value = "";
+  const form = document.querySelector("#form-card");
+  resetInputValidation(popupAddCard);
+  toggleFormButton(form);
+  showAddCardPopup();
 } 
 
 //this function adds event listeners to buttons on app load
@@ -171,6 +173,29 @@ function setupEventListeners() {
   const closeProfileButton = document.querySelector("#popup-close-profile");
   const closeAddButton = document.querySelector("#popup-close-add-card");
   const addButton = document.querySelector(".profile__button-add");
+  
+  //event listener to close popups when escape key is pressed
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      
+      closeAddCardPopup();
+      closeProfilePopup();
+    }
+  }); 
+
+  //backdrop event listener
+  const popupBackdrops = Array.from(document.querySelectorAll(".popup__backdrop"));
+  popupBackdrops.forEach((backdrop) => {
+    const isAddCardPopup = backdrop.closest("#popup-card");
+    const isEditProfile = backdrop.closest("#popup-profile");
+
+    if (isAddCardPopup) {
+      backdrop.addEventListener("click", closeAddCardPopup);
+
+    } else if (isEditProfile) {
+      backdrop.addEventListener("click", closeProfilePopup);
+    }
+  });
 
   //OPEN edit popupProfile -
   editButton.addEventListener("click", handleEditButton)
@@ -188,7 +213,9 @@ function setupEventListeners() {
   closeAddButton.addEventListener("click", closeAddCardPopup);
   createCardButton.addEventListener("click", addCard);
   saveProfileButton.addEventListener("click", saveProfileDetails);
+  
 }
+
 // function that obtains data and replaces it
 // corrected from feedback1
 function addCard(e) {
@@ -208,7 +235,6 @@ function addCard(e) {
     closeAddCardPopup();
 }
 
-
 // prevents popup from showing when reloading website.
 document.addEventListener("DOMContentLoaded", () => {
     const page = document.querySelector(".page");
@@ -219,6 +245,6 @@ enableValidation({
   formSelector: ".form",
   popupInputSelector: ".popup__input"
 });
+
 renderInitialCards();
 setupEventListeners();
-  
