@@ -31,7 +31,7 @@ const checkInputValidity = (inputElement, formElement) => {
 
 const showInputError = (inputElement, formElement) => {
     const inputWrapper = formElement.querySelector(`#${inputElement.id}-wrapper`);
-    const errorElement = inputWrapper.querySelector(`.${inputElement.id}__error-message`);
+    const errorElement = inputWrapper.querySelector(`.popup__${inputElement.id}-error-message`);
     inputElement.classList.add("popup__input_error_invalid");
     errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add("popup__error-message_type_active");
@@ -53,7 +53,7 @@ export const toggleFormButton = (formElement) => {
 
 const hideInputError = (inputElement, formElement) => {
     const inputWrapper = formElement.querySelector(`#${inputElement.id}-wrapper`);
-    const errorElement = inputWrapper.querySelector(`.${inputElement.id}__error-message`);
+    const errorElement = inputWrapper.querySelector(`.popup__${inputElement.id}-error-message`);
     errorElement.classList.remove("popup__error-message_type_active");
     errorElement.classList.add("popup__error-message_type_inactive")
     inputElement.classList.remove("popup__input_error_invalid");
