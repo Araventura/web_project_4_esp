@@ -18,7 +18,11 @@
     max-width: 880px;
 }
 
-@media screen and (max-width: 320px) {
+body {
+    background-color: black;
+}
+
+@media screen and (max-width: 768px) {
     .page {
         max-width: 320px;
         padding: 0;
