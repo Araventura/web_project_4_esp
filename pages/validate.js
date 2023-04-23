@@ -1,5 +1,5 @@
 //Function that adds event listener when submit is clicked and will prevent automatic refresh
-const enableValidation = (data) => {
+export const enableValidation = (data) => {
   const formList = Array.from(document.querySelectorAll(data.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (e) {

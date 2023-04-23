@@ -1,3 +1,6 @@
+//function imported for cards to be shown properly.
+import { enableValidation } from "./validate.js";
+
 const popupProfile = document.querySelector("#popup-profile");
 const popupAddCard = document.querySelector("#popup-card");
 const profileName = document.querySelector(".profile__name");
