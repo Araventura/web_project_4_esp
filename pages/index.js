@@ -1,5 +1,9 @@
 //function imported for cards to be shown properly.
-import { enableValidation } from "./validate.js";
+import {
+  enableValidation,
+  resetInputValidation,
+  toggleFormButton,
+} from "./validate.js";
 
 const popupProfile = document.querySelector("#popup-profile");
 const popupAddCard = document.querySelector("#popup-card");

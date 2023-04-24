@@ -41,7 +41,7 @@ const showInputError = (inputElement, formElement) => {
   errorElement.classList.add("popup__error-message_type_active");
 };
 
-const toggleFormButton = (formElement) => {
+export const toggleFormButton = (formElement) => {
   const popupInputs = Array.from(
     formElement.querySelectorAll(".popup__input-wrapper .popup__input")
   );
@@ -66,7 +66,7 @@ const hideInputError = (inputElement, formElement) => {
   inputElement.classList.remove("popup__input_error_invalid");
 };
 
-const resetInputValidation = (popup) => {
+export const resetInputValidation = (popup) => {
   const inputList = Array.from(
     popup.querySelectorAll(
       ".popup .popup__container .form .popup__input-wrapper .popup__input"
