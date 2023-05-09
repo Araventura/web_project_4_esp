@@ -13,10 +13,7 @@ const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__description");
 const nameInput = document.querySelector("#input-name");
 const descriptionInput = document.querySelector("#input-description");
-const cardTemplate = document.querySelector("#card_template");
-const cardContainer = document.querySelector(".card");
-const cover = document.querySelector(".cover");
-const coverExitButton = document.querySelector("#cover-close-button");
+// const coverExitButton = document.querySelector("#cover-close-button"); ---UTILS
 
 const initialCards = [
   {
@@ -61,62 +58,23 @@ function renderInitialCards() {
   });
 }
 
-// renderCard
-// This function obtains one card and adds it at the beginning of the objetc
-function renderCard(data, cardContainer) {
-  cardContainer.prepend(getCardElement(data));
-}
-
-// getCardElement
-// This function creates card element using template from HTML
-function getCardElement(data) {
-  const cardTemplateContent = cardTemplate.content.querySelector(".card__item");
-  const cardElement = cardTemplateContent.cloneNode(true);
-  const cardTitle = cardElement.querySelector(".card__title");
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardButton = cardElement.querySelector(".card__like");
-  const cardTrash = cardElement.querySelector(".card__trash");
-
-  cardTitle.textContent = data.name;
-  cardImage.src = data.link;
-  cardImage.addEventListener("click", openFullScreenImage);
-  cardImage.alt = data.alt;
-  cardButton.addEventListener("click", clickLike);
-  cardTrash.addEventListener("click", deleteCard);
-
-  return cardElement;
-}
-
 // openFullScreenImage
 // Function that opens image and centers it
-
-function openFullScreenImage(e) {
-  cover.classList.add("cover_clicked");
-  cover.querySelector(".cover__image").src = e.target.src;
-  cover.querySelector(".cover__subtitle").textContent = e.target.alt;
-
-  coverExitButton.addEventListener("click", closeFullScreenImage);
-}
+// ------CARD-----
+// function openFullScreenImage(e) {
+//   cover.classList.add("cover_clicked");
+//   cover.querySelector(".cover__image").src = e.target.src;
+//   cover.querySelector(".cover__subtitle").textContent = e.target.alt;
+// ------UTILS-----
+//   coverExitButton.addEventListener("click", closeFullScreenImage);
+// }
 
 // closeFullScreenImage
 // Removes the image focus from the center of the page.
-function closeFullScreenImage() {
-  cover.classList.remove("cover_clicked");
-}
-
-// clickLike
-//Like button - sets it as liked or unliked when clicked
-
-function clickLike(e) {
-  e.target.classList.toggle("card__like_active");
-}
-
-// deleteCard
-//Trash button - deletes image completely.
-
-function deleteCard(e) {
-  e.target.closest(".card__item").remove();
-}
+// ------UTILS?-----
+// function closeFullScreenImage() {
+//   cover.classList.remove("cover_clicked");
+// }
 
 function closeProfilePopup() {
   popupProfile.classList.remove("popup_open");
@@ -223,25 +181,6 @@ const closeOnEscape = (e) => {
     closeProfilePopup();
   }
 };
-
-// function that obtains data and replaces it
-// corrected from feedback1
-function addCard(e) {
-  e.preventDefault();
-
-  const titleInput = document.querySelector("#input-title");
-  const urlInput = document.querySelector("#input-url");
-  const newCard = {
-    name: titleInput.value,
-    link: urlInput.value,
-    alt: titleInput.value,
-  };
-
-  const card = getCardElement(newCard);
-  cardContainer.prepend(card);
-
-  closeAddCardPopup();
-}
 
 // prevents popup from showing when reloading website.
 document.addEventListener("DOMContentLoaded", () => {

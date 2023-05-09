@@ -29,6 +29,7 @@ export class Card {
     const cardLikeButton = this.element.querySelector(
       ".card__wrapper .card__like"
     );
+
     const cardTrashButton = this.element.querySelector(".card__trash");
 
     cardTrashButton.addEventListener("click", this._handleDeleteCard);
