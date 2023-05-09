@@ -5,6 +5,8 @@ import {
   toggleFormButton,
 } from "./validate.js";
 
+import { Card } from "./Card.js";
+
 const popupProfile = document.querySelector("#popup-profile");
 const popupAddCard = document.querySelector("#popup-card");
 const profileName = document.querySelector(".profile__name");
@@ -53,7 +55,9 @@ const initialCards = [
 // Function render Initial Cards obtains data for each and every card available in the object.
 function renderInitialCards() {
   initialCards.forEach((dataCard) => {
-    renderCard(dataCard, cardContainer);
+    const card = new Card(dataCard.name, dataCard.link, "card_template");
+    const cardElement = card.generateCard();
+    document.querySelector(".card").prepend(cardElement);
   });
 }
 
@@ -90,6 +94,7 @@ function openFullScreenImage(e) {
   cover.classList.add("cover_clicked");
   cover.querySelector(".cover__image").src = e.target.src;
   cover.querySelector(".cover__subtitle").textContent = e.target.alt;
+
   coverExitButton.addEventListener("click", closeFullScreenImage);
 }
 
