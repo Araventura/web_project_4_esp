@@ -87,11 +87,11 @@ function handleEditButton() {
   descriptionInput.value = profileInfo.textContent;
   const form = document.querySelector("#form-edit-profile");
   document.addEventListener("keydown", closeOnEscape);
-  resetInputValidation(popupProfile);
   showProfilePopup();
 
   const validator = new FormValidator(formClasses, form);
   validator.toggleFormButton();
+  validator.resetInputValidation(popupProfile);
 }
 
 //saveProfileDetails
@@ -128,11 +128,11 @@ function openAddCardPopup() {
   titleInput.value = "";
   descriptionInput.value = "";
   const form = document.querySelector("#form-card");
-  resetInputValidation(popupAddCard);
   showAddCardPopup();
 
   const validator = new FormValidator(formClasses, form);
   validator.toggleFormButton();
+  validator.resetInputValidation(popupAddCard);
 }
 
 const closeOnEscape = (e) => {
