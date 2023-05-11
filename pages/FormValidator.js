@@ -33,10 +33,10 @@ export class FormValidator {
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement);
-      this._toggleFormButton(); // this function toggles button, prevents false entries
+      this.toggleFormButton(); // this function toggles button, prevents false entries
     } else {
       this._hideInputError(inputElement);
-      this._toggleFormButton(); //function that toggles button
+      this.toggleFormButton(); //function that toggles button
     }
   }
 
@@ -64,7 +64,7 @@ export class FormValidator {
     inputElement.classList.remove("popup__input_error_invalid");
   }
 
-  _toggleFormButton() {
+  toggleFormButton() {
     const popupInputs = Array.from(
       this._formElement.querySelectorAll(".popup__input-wrapper .popup__input")
     );
