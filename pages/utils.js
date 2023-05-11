@@ -1,5 +1,5 @@
 //controladores de eventos & funcion que abre &cierra las ventanas modales se exportan
-import { resetInputValidation, toggleFormButton } from "./validate.js";
+import { FormValidator } from "./FormValidator.js";
 
 import { Card } from "./Card.js";
 
@@ -79,13 +79,19 @@ function handleEditButton() {
   const popupProfile = document.querySelector("#popup-profile");
   const profileName = document.querySelector(".profile__name");
 
+  const formClasses = {
+    popupInputSelector: ".popup__input",
+  };
+
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileInfo.textContent;
   const form = document.querySelector("#form-edit-profile");
   document.addEventListener("keydown", closeOnEscape);
   resetInputValidation(popupProfile);
-  toggleFormButton(form);
   showProfilePopup();
+
+  const validator = new FormValidator(formClasses, form);
+  validator.toggleFormButton();
 }
 
 //saveProfileDetails
@@ -109,7 +115,12 @@ function openAddCardPopup() {
   const titleInput = document.querySelector("#input-title");
   const descriptionInput = document.querySelector("#input-url");
   const popupAddCard = document.querySelector("#popup-card");
+
   document.addEventListener("keydown", closeOnEscape);
+
+  const formClasses = {
+    popupInputSelector: ".popup__input",
+  };
 
   titleInput.setAttribute("placeholder", "Titulo");
   descriptionInput.setAttribute("placeholder", "Enlace a la imagen");
@@ -118,8 +129,10 @@ function openAddCardPopup() {
   descriptionInput.value = "";
   const form = document.querySelector("#form-card");
   resetInputValidation(popupAddCard);
-  toggleFormButton(form);
   showAddCardPopup();
+
+  const validator = new FormValidator(formClasses, form);
+  validator.toggleFormButton();
 }
 
 const closeOnEscape = (e) => {
