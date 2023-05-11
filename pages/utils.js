@@ -95,6 +95,7 @@ function saveProfileDetails(e) {
   const nameInput = document.querySelector("#input-name");
   const profileInfo = document.querySelector(".profile__description");
   const profileName = document.querySelector(".profile__name");
+  const descriptionInput = document.querySelector("#input-description");
 
   e.preventDefault();
 

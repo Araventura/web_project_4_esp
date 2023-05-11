@@ -1,5 +1,5 @@
 //function imported for cards to be shown properly.
-import { enableValidation } from "./validate.js";
+import { FormValidator } from "./FormValidator.js";
 
 import { Card } from "./Card.js";
 
@@ -48,11 +48,18 @@ function renderInitialCards() {
   });
 }
 
-enableValidation({
-  //formvalidator
-  formSelector: ".form",
-  popupInputSelector: ".popup__input",
-});
+function setupValidation() {
+  const formList = Array.from(document.querySelectorAll(".form"));
+  formList.forEach((form) => {
+    const formClasses = {
+      popupInputSelector: ".popup__input",
+    };
 
+    const validator = new FormValidator(formClasses, form);
+    validator.enableValidation();
+  });
+}
+
+setupValidation();
 renderInitialCards();
 setupEventListeners();
