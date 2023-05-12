@@ -17,14 +17,20 @@ export function setupEventListeners() {
   const popupBackdrops = Array.from(
     document.querySelectorAll(".popup__backdrop")
   );
+
+  popupBackdrops.push(document.querySelector(".cover__backdrop"));
+
   popupBackdrops.forEach((backdrop) => {
     const isAddCardPopup = backdrop.closest("#popup-card");
     const isEditProfile = backdrop.closest("#popup-profile");
+    const isCoverImageBackdrop = backdrop.closest(".cover");
 
     if (isAddCardPopup) {
       backdrop.addEventListener("click", closeAddCardPopup);
     } else if (isEditProfile) {
       backdrop.addEventListener("click", closeProfilePopup);
+    } else if (isCoverImageBackdrop) {
+      backdrop.addEventListener("click", closeFullScreenImage);
     }
   });
 
@@ -135,10 +141,11 @@ function openAddCardPopup() {
   validator.resetInputValidation(popupAddCard);
 }
 
-const closeOnEscape = (e) => {
+export const closeOnEscape = (e) => {
   if (e.key === "Escape") {
     closeAddCardPopup();
     closeProfilePopup();
+    closeFullScreenImage();
   }
 };
 
@@ -151,7 +158,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // closeFullScreenImage
 // Removes the image focus from the center of the page.
 function closeFullScreenImage() {
+  const cover = document.querySelector(".cover");
   cover.classList.remove("cover_clicked");
+  document.removeEventListener("keydown", closeOnEscape);
 }
 
 const handleAddCard = (e) => {
