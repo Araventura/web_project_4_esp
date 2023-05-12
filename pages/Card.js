@@ -3,6 +3,8 @@
 //tiene metodos privados para cada event listener
 //funcion que produce una card y  enlace a la imagen
 
+import { closeOnEscape } from "./utils.js";
+
 export class Card {
   _text = "";
   _url = "";
@@ -54,6 +56,7 @@ export class Card {
     cover.classList.add("cover_clicked");
     cover.querySelector(".cover__image").src = e.target.src;
     cover.querySelector(".cover__subtitle").textContent = e.target.alt;
+    document.addEventListener("keydown", closeOnEscape);
   }
 
   _handleDeleteCard(e) {
