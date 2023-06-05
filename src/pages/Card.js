@@ -3,17 +3,16 @@
 //tiene metodos privados para cada event listener
 //funcion que produce una card y  enlace a la imagen
 
-import { closeOnEscape } from "./utils.js";
-
 export class Card {
   _text = "";
   _url = "";
   _className = "";
 
-  constructor(text, url, className) {
+  constructor(text, url, className, handleCardClick) {
     this._text = text;
     this._url = url;
     this._className = className;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -35,7 +34,7 @@ export class Card {
     const cardTrashButton = this.element.querySelector(".card__trash");
 
     cardTrashButton.addEventListener("click", this._handleDeleteCard);
-    cardImage.addEventListener("click", this._openFullScreenImage);
+    cardImage.addEventListener("click", this._handleCardClick);
     cardLikeButton.addEventListener("click", this._cardLikeButton);
 
     this.element.querySelector(".card__wrapper .card__title").textContent =
@@ -49,14 +48,6 @@ export class Card {
 
   _cardLikeButton(e) {
     e.target.classList.toggle("card__like_active");
-  }
-
-  _openFullScreenImage(e) {
-    const cover = document.querySelector(".cover");
-    cover.classList.add("cover_clicked");
-    cover.querySelector(".cover__image").src = e.target.src;
-    cover.querySelector(".cover__subtitle").textContent = e.target.alt;
-    document.addEventListener("keydown", closeOnEscape);
   }
 
   _handleDeleteCard(e) {

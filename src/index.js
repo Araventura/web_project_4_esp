@@ -1,9 +1,15 @@
 //function imported for cards to be shown properly.
-import { FormValidator } from "./FormValidator.js";
+import "./pages/index.css";
+import { FormValidator } from "./pages/FormValidator.js";
+import { Card } from "./pages/Card.js";
+import { setupEventListeners } from "./pages/utils.js";
+import { PopupWithImage } from "./pages/PopupWithImage.js";
+import headerImg from "./images/Headerimg.png";
 
-import { Card } from "./Card.js";
+const headerImage = document.getElementById("header-image");
+headerImage.src = headerImg;
 
-import { setupEventListeners } from "./utils.js";
+const popupWithImage = new PopupWithImage(".cover");
 
 const initialCards = [
   {
@@ -42,7 +48,16 @@ const initialCards = [
 // Function render Initial Cards obtains data for each and every card available in the object.
 function renderInitialCards() {
   initialCards.forEach((dataCard) => {
-    const card = new Card(dataCard.name, dataCard.link, "card_template");
+    const card = new Card(
+      dataCard.name,
+      dataCard.link,
+      "card_template",
+      (e) => {
+        // funcion que llama a popupwithImage & open y pasa el evento como parametro
+        popupWithImage.open(e);
+      }
+    );
+
     const cardElement = card.generateCard();
     document.querySelector(".card").prepend(cardElement);
   });
