@@ -23,11 +23,18 @@ export class PopupWithForm extends Popup {
         .addEventListener("click", this.close.bind(this));
       window.addEventListener("keydown", this._handleEscClose.bind(this));
       this.popup
+        .querySelector(".cover__backdrop") //class needed to avoid errors on automated tests - errors with BEM...
+        .addEventListener("click", this.close.bind(this));
+      window.addEventListener("keydown", this._handleEscClose.bind(this));
+      this.popup
         .querySelector(".form")
         .addEventListener("submit", this.sendCallback);
       this.popup
         .querySelector(".popup__close-button")
-        .addEventListener("click", this.close.bind(this));
+        .addEventListener("click", this.close.bind(this)); //se repite??
+      this.popup
+        .querySelector(".cover__close")
+        .addEventListener("click", this.close.bind(this)); //class needed to avoid BEM errors in automated tests...
     }
   }
 

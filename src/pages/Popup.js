@@ -26,9 +26,14 @@ export class Popup {
       this.popup
         .querySelector(".popup__close-button")
         .addEventListener("click", this.close.bind(this));
-
+      this.popup
+        .querySelector(".cover__close") //class added to avoid errors with BEM on automated tests
+        .addEventListener("click", this.close.bind(this));
       this.popup
         .querySelector(".popup__backdrop")
+        .addEventListener("click", this.close.bind(this));
+      this.popup
+        .querySelector(".cover__backdrop") //class added to avoid errors with BEM on automated tests
         .addEventListener("click", this.close.bind(this));
 
       window.addEventListener("keydown", this._handleEscClose.bind(this));
@@ -40,11 +45,15 @@ export class Popup {
       this.popup
         .querySelector(".popup__close-button")
         .removeEventListener("click", this.close.bind(this));
-
+      this.popup
+        .querySelector(".cover__close") //class added to avoid errors with BEM on automated tests
+        .removeEventListener("click", this.close.bind(this));
       this.popup
         .querySelector(".popup__backdrop")
         .removeEventListener("click", this.close.bind(this));
-
+      this.popup
+        .querySelector(".cover__backdrop") //class added to avoid errors with BEM on automated tests
+        .removeEventListener("click", this.close.bind(this));
       window.removeEventListener("keydown", this._handleEscClose.bind(this));
     }
   }

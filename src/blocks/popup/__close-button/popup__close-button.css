@@ -1,4 +1,4 @@
-.popup__close-button {
+.popup__close-button .cover__close {
     position: absolute;
     right: -35px;
     top: -35px;
@@ -6,12 +6,12 @@
 
 }
 
-.popup__close-button img {
+.popup__close-button .cover__close img {
     height: 100%;
     width: 100%;
 }
 
-.popup__close-button:hover {
+.popup__close-button:hover .cover__close:hover {
     opacity: 0.8;
 }
 
