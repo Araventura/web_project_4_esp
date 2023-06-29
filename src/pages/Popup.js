@@ -1,4 +1,4 @@
-// abre y cierra ventana emergente
+//  abre y cierra ventana emergente
 
 export class Popup {
   constructor(popupSelector) {
