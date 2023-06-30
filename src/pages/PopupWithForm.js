@@ -33,7 +33,7 @@ export class PopupWithForm extends Popup {
         .querySelector(".popup__close-button")
         .addEventListener("click", this.close.bind(this)); //se repite??
       this.popup
-        .querySelector(".cover__close")
+        .querySelector(".cover__close-button")
         .addEventListener("click", this.close.bind(this)); //class needed to avoid BEM errors in automated tests...
     }
   }

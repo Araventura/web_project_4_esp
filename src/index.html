@@ -44,7 +44,10 @@
 
       <div class="popup" id="popup-profile">
         <div class="popup__container">
-          <div class="popup__close-button" id="popup-close-profile">
+          <div
+            class="popup__close-button cover__close-button"
+            id="popup-close-profile"
+          >
             <img
               src="<%=require('./images/CloseIcon.png')%>"
               alt="Closing Icon"
@@ -80,12 +83,15 @@
             <button class="popup__button">Guardar</button>
           </form>
         </div>
-        <div class="popup__backdrop"></div>
+        <div class="popup__backdrop cover__backdrop"></div>
       </div>
 
       <div class="popup" id="popup-card">
         <div class="popup__container">
-          <div class="popup__close-button" id="popup-close-add-card">
+          <div
+            class="popup__close-button cover__close-button"
+            id="popup-close-add-card"
+          >
             <img
               src="<%=require('./images/CloseIcon.png')%>"
               alt="Closing Icon"
@@ -114,12 +120,15 @@
             <button id="create-card-button" class="popup__button">Crear</button>
           </form>
         </div>
-        <div class="popup__backdrop"></div>
+        <div class="popup__backdrop cover__backdrop"></div>
       </div>
 
       <div class="cover">
         <div class="cover__wrapper">
-          <div class="cover__close" id="cover-close-button">
+          <div
+            class="cover__close-button popup__close-button"
+            id="cover-close-button"
+          >
             <img
               src="<%=require('./images/CloseIcon.png')%>"
               alt="Closing Icon"
@@ -128,7 +137,7 @@
           <img class="cover__image" src="#" alt="Cover Backdrop" />
           <h3 class="cover__subtitle"></h3>
         </div>
-        <div class="cover__backdrop"></div>
+        <div class="cover__backdrop popup__backdrop"></div>
       </div>
 
       <section class="places">
