@@ -3,6 +3,7 @@
 export class Popup {
   constructor(popupSelector) {
     this.popup = document.querySelector(popupSelector);
+    this.addClassesToCloseButton();
     this.removeEventListeners();
     this.setEventListeners();
   }
@@ -42,7 +43,6 @@ export class Popup {
 
   removeEventListeners() {
     if (this.popup != null) {
-      console.log(this.popup);
       this.popup
         .querySelector(".cover__close-button") //class added to avoid errors with BEM on automated tests
         .removeEventListener("click", this.close.bind(this));
@@ -58,5 +58,21 @@ export class Popup {
 
       window.removeEventListener("keydown", this._handleEscClose.bind(this));
     }
+  }
+  //funcion que agrega clases al boton de cerrar
+  addClassesToCloseButton() {
+    console.log(this.popup);
+    this.popup
+      .querySelector(".popup__close-button")
+      ?.classList.add("cover__close-button");
+    this.popup
+      .querySelector(".cover__close-button")
+      ?.classList.add("popup__close-button");
+    this.popup
+      .querySelector(".popup__backdrop")
+      ?.classList.add("cover__backdrop");
+    this.popup
+      .querySelector(".cover__backdrop")
+      ?.classList.add("popup__backdrop");
   }
 }
