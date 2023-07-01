@@ -2,6 +2,10 @@
     background-color: white;
     cursor: pointer;
     border: none;
+    background-repeat: no-repeat;
+    background-image: url("/src/images/like.svg");
+    height: 25px;
+    min-width: 25px;
 }
 
 .card__like:hover {
