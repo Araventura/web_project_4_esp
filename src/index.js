@@ -1,9 +1,9 @@
 //function imported for cards to be shown properly.
 import "./pages/index.css";
-import { FormValidator } from "./pages/FormValidator.js";
-import { Card } from "./pages/Card.js";
+import { FormValidator } from "./pages/components/FormValidator";
+import { Card } from "./pages/components/Card.js";
 import { setupEventListeners } from "./pages/utils.js";
-import { PopupWithImage } from "./pages/PopupWithImage.js";
+import { PopupWithImage } from "./pages/components/PopupWithImage.js";
 import headerImg from "./images/Headerimg.png";
 
 const headerImage = document.getElementById("header-image");
