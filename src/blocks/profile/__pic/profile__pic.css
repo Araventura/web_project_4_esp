@@ -1,4 +1,16 @@
 .profile__pic {
     border-radius: 50%;
     height: 127.5px;
+    width: 127.5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile__pic-img {
+    width: 100%
+} 
+
+.profile__pic:hover{
+    background-color: black;
+    opacity: 0.8;
 }

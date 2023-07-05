@@ -17,14 +17,15 @@
       </header>
 
       <section class="profile">
-        <img
-          class="profile__pic"
-          src="<%=require('./images/profileimage.jpg')%>"
-          alt="Profile image of user"
-        />
-        <div class="profile__button-edit_hovered">
+        <div class="profile__pic">
           <img
-            src="<%=require('./images/editbutton.png')%>"
+            class="profile__pic-img"
+            src="<%=require('./images/profileimage.jpg')%>"
+            alt="Profile image of user"
+          />
+          <img
+            class="profile__button-edit_hovered"
+            src="<%=require('./images/Pencil.png')%>"
             alt="edit button image"
           />
         </div>
