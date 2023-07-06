@@ -14,3 +14,7 @@
     background-color: black;
     opacity: 0.8;
 }
+
+.profile__pic:hover .profile__button-edit_hovered {
+    display: block;
+}
