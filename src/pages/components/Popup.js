@@ -1,4 +1,5 @@
 //  abre y cierra ventana emergente
+// adds "escape" event listerer
 
 export class Popup {
   constructor(popupSelector) {
@@ -61,7 +62,6 @@ export class Popup {
   }
   //funcion que agrega clases al boton de cerrar
   addClassesToCloseButton() {
-    console.log(this.popup);
     this.popup
       .querySelector(".popup__close-button")
       ?.classList.add("cover__close-button");

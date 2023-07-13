@@ -124,6 +124,46 @@
         <div class="popup__backdrop"></div>
       </div>
 
+      <div class="popup" id="popup-edit-profile-image">
+        <div class="popup__container">
+          <div class="popup__close-button" id="popup-close-edit-profile">
+            <img
+              src="<%=require('./images/CloseIcon.png')%>"
+              alt="Closing Icon"
+            />
+          </div>
+          <form id="form-edit-profile-image" class="form" novalidate>
+            <h2 class="popup__title">Cambiar foto de perfil</h2>
+            <div class="popup__input-wrapper" id="input-name-wrapper">
+              <input type="url" class="popup__input" id="input-url" required />
+              <span
+                class="popup__input-url-error-message popup__error-message"
+              ></span>
+            </div>
+            <button id="edit-profile-image-button" class="popup__button">
+              Crear
+            </button>
+          </form>
+        </div>
+        <div class="popup__backdrop"></div>
+      </div>
+
+      <div class="popup" id="popup-delete-image">
+        <div class="popup__container">
+          <div class="popup__close-button" id="popup-close-delete-image">
+            <img
+              src="<%=require('./images/CloseIcon.png')%>"
+              alt="Closing Icon"
+            />
+          </div>
+          <form id="form-delete-image" class="form" novalidate>
+            <h2 class="popup__title">Estas seguro?</h2>
+            <button id="delete-image-button" class="popup__button">Si</button>
+          </form>
+        </div>
+        <div class="popup__backdrop"></div>
+      </div>
+
       <div class="cover">
         <div class="cover__wrapper">
           <div class="cover__close-button" id="cover-close-button">
@@ -154,9 +194,7 @@
           <img class="card__image" src="#" alt="" />
           <div class="card__wrapper">
             <span class="card__title"></span>
-            <button class="card__like">
-              <!-- <img src="<%=require('./images/like.svg')%>" alt="Like button" /> -->
-            </button>
+            <button class="card__like"></button>
           </div>
         </li>
       </template>

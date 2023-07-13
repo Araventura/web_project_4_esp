@@ -3,6 +3,8 @@
 //tiene metodos privados para cada event listener
 //funcion que produce una card y  enlace a la imagen
 
+import { PopupWithForm } from "./PopupWithForm";
+
 export class Card {
   _text = "";
   _url = "";
@@ -33,7 +35,14 @@ export class Card {
 
     const cardTrashButton = this.element.querySelector(".card__trash");
 
-    cardTrashButton.addEventListener("click", this._handleDeleteCard);
+    cardTrashButton.addEventListener("click", () => {
+      const popupDeleteImage = new PopupWithForm(
+        this._handleDeleteCard,
+        "#popup-delete-image"
+      );
+      popupDeleteImage.open();
+    });
+
     cardImage.addEventListener("click", this._handleCardClick);
     cardLikeButton.addEventListener("click", this._cardLikeButton.bind(this));
 
@@ -46,12 +55,16 @@ export class Card {
     return this.element;
   }
 
+  //aqui iria la clase de form-delete-image
+
   _cardLikeButton(e) {
     const cardImage = this.element.querySelector(".card__like");
     cardImage.classList.toggle("card__like_active");
+    //aqui se agregaria el count like
   }
 
   _handleDeleteCard(e) {
+    console.log(e.target);
     e.target.closest(".card__item").remove();
   }
 }
