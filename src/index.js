@@ -5,11 +5,19 @@ import { Card } from "./pages/components/Card.js";
 import { setupEventListeners } from "./pages/utils.js";
 import { PopupWithImage } from "./pages/components/PopupWithImage.js";
 import headerImg from "./images/Headerimg.png";
+import { Api } from "./pages/components/Api.js";
 
 const headerImage = document.getElementById("header-image");
 headerImage.src = headerImg;
 
 const popupWithImage = new PopupWithImage(".cover");
+
+const api = new Api(
+  "https://around.nomoreparties.co/v1/web_es_05",
+  "fccf719e-8a78-41bc-841c-fef7866c1b1f"
+);
+
+api.getUserData();
 
 const initialCards = [
   {

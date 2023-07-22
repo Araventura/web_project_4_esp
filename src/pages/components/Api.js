@@ -1,19 +1,20 @@
-class Api {
+export class Api {
   //crea un constructor que reciba
   //crea tres metodos loadCards/addCard/deleteCard/getUserData
-  constructor() {
-    //this.url/this.token
+  constructor(url, token) {
+    this.url = url;
+    this.token = token;
   }
 
   getUserData() {
-    fetch("https://around.nomoreparties.co/v1/web_es_05/users/me", {
+    return fetch(this.url + "/users/me", {
       method: "GET",
       headers: {
         authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
       },
     })
       .then((res) => {
-        console.log(res); //agarra el html y remplaza el texto textcontent/innerHTML NAME/ABOUT/AVATAR
+        console.log(res.json()); //agarra el html y remplaza el texto textcontent/innerHTML NAME/ABOUT/AVATAR
       })
       .catch((res) => {
         console.log(res);
@@ -21,22 +22,23 @@ class Api {
   }
 
   loadCards() {
-    fetch("https://around.nomoreparties.co/v1/web_es_05/cards", {
+    return fetch(this.url + "/cards", {
       method: "GET",
       headers: {
         authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
+        mode: "no-cors",
       },
     })
       .then((res) => {
         console.log(res);
       })
       .catch((res) => {
-        console.log(res.data._id);
+        console.log("Hola");
       });
   }
 
   editProfile() {
-    fetch("https://around.nomoreparties.co/v1/web_es_05/users/me", {
+    return fetch(this.url + "/users/me", {
       method: "PATCH",
       headers: {
         authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
