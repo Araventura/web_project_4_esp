@@ -75,5 +75,4 @@ function setupValidation() {
 }
 
 setupValidation();
-//renderInitialCards();
 setupEventListeners();

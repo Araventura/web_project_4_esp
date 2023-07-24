@@ -25,7 +25,7 @@ export class Api {
     });
   }
 
-  editProfile() {
+  editProfile(name, about) {
     return fetch(this.url + "/users/me", {
       method: "PATCH",
       headers: {
@@ -33,8 +33,8 @@ export class Api {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        name: "Daniel Villaverde",
-        about: "Web Dev & dog walker",
+        name: name,
+        about: about,
       }),
     });
   }

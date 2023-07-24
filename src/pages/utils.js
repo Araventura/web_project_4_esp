@@ -3,6 +3,7 @@ import { FormValidator } from "./components/FormValidator.js";
 import { Card } from "./components/Card.js";
 import { PopupWithForm } from "./components/PopupWithForm.js";
 import { PopupWithImage } from "./components/PopupWithImage.js";
+import { Api } from "./components/Api.js";
 
 const popupWithImage = new PopupWithImage(".cover");
 
@@ -85,6 +86,10 @@ function handleEditButton() {
 // When clicked, saves edited data from profile info.
 
 function saveProfileDetails(e) {
+  const api = new Api(
+    "https://around.nomoreparties.co/v1/web_es_05",
+    "fccf719e-8a78-41bc-841c-fef7866c1b1f"
+  );
   const nameInput = document.querySelector("#input-name");
   const profileInfo = document.querySelector(".profile__description");
   const profileName = document.querySelector(".profile__name");
@@ -92,10 +97,16 @@ function saveProfileDetails(e) {
 
   e.preventDefault();
 
-  profileName.textContent = nameInput.value;
-  profileInfo.textContent = descriptionInput.value;
-
-  editProfilePopup.close(); // reemplazar por
+  api
+    .editProfile(nameInput.value, descriptionInput.value)
+    .then(() => {
+      profileName.textContent = nameInput.value;
+      profileInfo.textContent = descriptionInput.value;
+      editProfilePopup.close();
+    })
+    .catch((res) => {
+      console.log("Error saving: ", res);
+    });
 }
 
 function openAddCardPopup() {
