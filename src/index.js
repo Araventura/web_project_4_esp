@@ -17,45 +17,36 @@ const api = new Api(
   "fccf719e-8a78-41bc-841c-fef7866c1b1f"
 );
 
-api.getUserData();
+api
+  .getUserData()
+  .then((res) => {
+    return res.json();
+  })
+  .then((res) => {
+    const profilename = document.querySelector(".profile__name");
+    const avatar = document.querySelector(".profile__pic-img");
+    const about = document.querySelector(".profile__description");
+    profilename.innerHTML = res.name;
+    avatar.src = res.avatar; // need editing on image.
+    about.innerHTML = res.about;
+  })
+  .catch(() => {
+    console.log("Hola error");
+  });
 
-const initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-    alt: "Valle de Yosemite",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-    alt: "Lago Louise",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-    alt: "Montañas Calvas",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-    alt: "Latemar",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-    alt: "Parque Nacional de la Vanoise",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-    alt: "Lake di Braies",
-  },
-];
+api
+  .loadCards()
+  .then((res) => {
+    return res.json();
+  })
+  .then((res) => {
+    renderInitialCards(res);
+  });
 
 //  Render initial cards
 // Function render Initial Cards obtains data for each and every card available in the object.
-function renderInitialCards() {
-  initialCards.forEach((dataCard) => {
+function renderInitialCards(cards) {
+  cards.forEach((dataCard) => {
     const card = new Card(
       dataCard.name,
       dataCard.link,
@@ -84,5 +75,5 @@ function setupValidation() {
 }
 
 setupValidation();
-renderInitialCards();
+//renderInitialCards();
 setupEventListeners();

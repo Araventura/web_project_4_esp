@@ -12,13 +12,7 @@ export class Api {
       headers: {
         authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
       },
-    })
-      .then((res) => {
-        console.log(res.json()); //agarra el html y remplaza el texto textcontent/innerHTML NAME/ABOUT/AVATAR
-      })
-      .catch((res) => {
-        console.log(res);
-      });
+    });
   }
 
   loadCards() {
@@ -28,13 +22,7 @@ export class Api {
         authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
         mode: "no-cors",
       },
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((res) => {
-        console.log("Hola");
-      });
+    });
   }
 
   editProfile() {
