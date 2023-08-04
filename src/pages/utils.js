@@ -8,6 +8,11 @@ import { Api } from "./components/Api.js";
 const popupWithImage = new PopupWithImage(".cover");
 
 const handleAddCard = (e) => {
+  const api = new Api(
+    "https://around.nomoreparties.co/v1/web_es_05",
+    "fccf719e-8a78-41bc-841c-fef7866c1b1f"
+  );
+
   e.preventDefault();
 
   const titleInput = document.querySelector("#input-title");
@@ -23,9 +28,21 @@ const handleAddCard = (e) => {
     }
   );
   //pasar funcion que crea card y popula con info la nueva card
-  const cardElement = card.generateCard();
-  //pon card antes de lista de cards
-  document.querySelector(".card").prepend(cardElement);
+  //const
+
+  //API is called to save card
+  api
+    .addCard(titleInput.value, urlInput.value)
+    .then((res) => {
+      const cardElement = card.generateCard();
+      document.querySelector(".card").prepend(cardElement);
+      return res.json();
+    })
+    .then((res) => {
+      console.log(res);
+    });
+
+  //pone card antes de lista de cards
 
   addCardPopup.close();
 };

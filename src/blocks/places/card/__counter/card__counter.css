@@ -1,0 +1,14 @@
+.card__counter {
+    display: flex;
+    align-items: center;
+}
+
+.card__counter_likes {
+    font-size: 14px;
+    line-height: 17px;
+    align-self: auto;
+    color: black;
+    position: absolute;
+    left: 249px;
+    bottom: 11px;
+}

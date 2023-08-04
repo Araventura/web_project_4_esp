@@ -25,6 +25,20 @@ export class Api {
     });
   }
 
+  addCard(name, link) {
+    return fetch(this.url + "/cards", {
+      method: "POST",
+      headers: {
+        authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        link: link,
+      }),
+    });
+  }
+
   editProfile(name, about) {
     return fetch(this.url + "/users/me", {
       method: "PATCH",

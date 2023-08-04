@@ -31,7 +31,7 @@ api
     about.innerHTML = res.about;
   })
   .catch(() => {
-    console.log("Hola error");
+    console.log("Hola there was an error");
   });
 
 api
@@ -51,14 +51,16 @@ function renderInitialCards(cards) {
       dataCard.name,
       dataCard.link,
       "card_template",
+
       (e) => {
         // funcion que llama a popupwithImage & open y pasa el evento como parametro
         popupWithImage.open(e);
-      }
+      },
+      dataCard.likes
     );
 
     const cardElement = card.generateCard();
-    document.querySelector(".card").prepend(cardElement);
+    document.querySelector(".card").append(cardElement);
   });
 }
 

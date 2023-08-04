@@ -12,6 +12,7 @@
 @import url("../blocks/places/card/__title/card__title.css");
 @import url("../blocks/places/card/__wrapper/card__wrapper.css");
 @import url("../blocks/places/card/__trash/card__trash.css");
+@import url("../blocks/places/card/__counter/card__counter.css");
 @import url("../blocks/cover/cover.css");
 @import url("../blocks/cover/__image/cover__image.css");
 @import url("../blocks/cover/__subtitle/cover__subtitle.css");

@@ -18,3 +18,10 @@
     align-items: center;
     opacity: none;
 }
+
+.card__like__counter #card-like-counter{
+    font-size: 14px;
+    line-height: 17px;
+    align-self: auto;
+    color: black;
+}
