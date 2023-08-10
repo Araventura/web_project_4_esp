@@ -10,13 +10,22 @@ export class Card {
   _url = "";
   _className = "";
   _likes = [];
+  _id = "";
+  _popup = null;
+  _userId = "";
 
-  constructor(text, url, className, handleCardClick, likes) {
+  constructor(text, url, className, handleCardClick, likes, id, userId) {
     this._text = text;
     this._url = url;
     this._className = className;
     this._handleCardClick = handleCardClick;
     this._likes = likes;
+    this._id = id;
+    this._popup = new PopupWithForm(
+      this._handleDeleteCard.bind(this),
+      "#popup-delete-image"
+    );
+    this._userId = userId;
   }
 
   _getTemplate() {
@@ -30,18 +39,15 @@ export class Card {
 
   generateCard() {
     this.element = this._getTemplate();
+    this.element.setAttribute("id", this._id);
     const cardImage = this.element.querySelector(".card__image");
     const cardLikeButton = this.element.querySelector(
       ".card__wrapper .card__like"
     );
     const cardTrashButton = this.element.querySelector(".card__trash");
 
-    cardTrashButton.addEventListener("click", () => {
-      const popupDeleteImage = new PopupWithForm(
-        this._handleDeleteCard,
-        "#popup-delete-image"
-      );
-      popupDeleteImage.open();
+    cardTrashButton.addEventListener("click", (e) => {
+      this._popup.open(this._id);
     });
 
     cardImage.addEventListener("click", this._handleCardClick);
@@ -64,9 +70,7 @@ export class Card {
     if (this._likes.includes("fccf719e-8a78-41bc-841c-fef7866c1b1f")) {
       // quitar del array
       const index = this._likes.indexOf("fccf719e-8a78-41bc-841c-fef7866c1b1f");
-      if (index > -1) {
-        this._likes.splice(index, 1);
-      }
+      this._likes.splice(index, 1);
       //hace toggle para quitarlo del array
     } else {
       this._likes.push("fccf719e-8a78-41bc-841c-fef7866c1b1f");
@@ -76,9 +80,11 @@ export class Card {
     //aqui se agregaria el count like
   }
 
-  _handleDeleteCard(e) {
-    console.log(e.target);
-    e.target.closest(".card__item").remove();
+  _handleDeleteCard() {
+    //console.log(this.element);
+    //document.getElementById(this._id).remove();
+    this.element.remove();
+    this._popup.close();
   }
 
   _setCardLikes() {

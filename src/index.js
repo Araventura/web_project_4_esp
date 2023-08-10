@@ -7,10 +7,9 @@ import { PopupWithImage } from "./pages/components/PopupWithImage.js";
 import headerImg from "./images/Headerimg.png";
 import { Api } from "./pages/components/Api.js";
 
+const popupWithImage = new PopupWithImage(".cover");
 const headerImage = document.getElementById("header-image");
 headerImage.src = headerImg;
-
-const popupWithImage = new PopupWithImage(".cover");
 
 const api = new Api(
   "https://around.nomoreparties.co/v1/web_es_05",
@@ -51,12 +50,13 @@ function renderInitialCards(cards) {
       dataCard.name,
       dataCard.link,
       "card_template",
-
       (e) => {
         // funcion que llama a popupwithImage & open y pasa el evento como parametro
         popupWithImage.open(e);
       },
-      dataCard.likes
+      dataCard.likes,
+      dataCard._id,
+      dataCard.owner._id
     );
 
     const cardElement = card.generateCard();

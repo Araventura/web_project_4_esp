@@ -15,6 +15,7 @@ export class Popup {
 
   close() {
     this.popup.classList.remove("popup_open");
+    this.removeEventListeners();
   }
 
   _handleEscClose(e) {
