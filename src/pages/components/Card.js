@@ -4,6 +4,7 @@
 //funcion que produce una card y  enlace a la imagen
 
 import { PopupWithForm } from "./PopupWithForm";
+import { Api } from "./Api";
 
 export class Card {
   _text = "";
@@ -26,6 +27,10 @@ export class Card {
       "#popup-delete-image"
     );
     this._userId = userId;
+    this._api = new Api(
+      "https://around.nomoreparties.co/v1/web_es_05",
+      "fccf719e-8a78-41bc-841c-fef7866c1b1f"
+    );
   }
 
   _getTemplate() {
@@ -86,10 +91,13 @@ export class Card {
   }
 
   _handleDeleteCard() {
-    //console.log(this.element);
-    //document.getElementById(this._id).remove();
-    this.element.remove();
-    this._popup.close();
+    this._api
+      .deleteCard(this._id)
+      .then(() => {
+        this.element.remove();
+        this._popup.close();
+      })
+      .catch((res) => console.log("Error deleting image" + res));
   }
 
   _setCardLikes() {

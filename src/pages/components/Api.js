@@ -52,4 +52,14 @@ export class Api {
       }),
     });
   }
+
+  deleteCard(id) {
+    return fetch(this.url + "/cards/" + id, {
+      method: "DELETE",
+      headers: {
+        authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
+        "content-type": "application/json",
+      },
+    });
+  }
 }
