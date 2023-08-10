@@ -9,6 +9,10 @@
     right: 15px;
 }
 
+.card__trash_display_hide {
+    display: none;
+}
+
 .card__trash:hover {
     opacity: 0.8;
 }

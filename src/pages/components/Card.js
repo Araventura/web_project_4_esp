@@ -46,6 +46,11 @@ export class Card {
     );
     const cardTrashButton = this.element.querySelector(".card__trash");
 
+    if (this._userId != "aff1383f05db104e89f933b0") {
+      //este ID es el que se loggea como el owner ID
+      cardTrashButton.classList.add("card__trash_display_hide");
+    }
+
     cardTrashButton.addEventListener("click", (e) => {
       this._popup.open(this._id);
     });
