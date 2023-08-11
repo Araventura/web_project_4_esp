@@ -54,12 +54,21 @@ const editProfilePopup = new PopupWithForm(
 
 const addCardPopup = new PopupWithForm(handleAddCard, "#popup-card");
 
+const updateProfilePicPopup = new PopupWithForm(
+  updateProfilePic,
+  "#popup-edit-profile-pic"
+);
+
 //this function adds event listeners to buttons on app load
 export function setupEventListeners() {
+  //se selecciona el boton de edit profile + agrega event listener + classListadd popup__open
   const editButton = document.querySelector(".profile__button-edit");
   const closeAddButton = document.querySelector("#popup-close-add-card");
   const addButton = document.querySelector(".profile__button-add");
+  const editProfilePicButton = document.querySelector(".profile__pic");
 
+  //open edit profile pic popup
+  editProfilePicButton.addEventListener("click", handleEditProfilePic);
   //OPEN edit popupProfile -
   editButton.addEventListener("click", handleEditButton);
 
@@ -71,6 +80,24 @@ export function setupEventListeners() {
   closeAddButton.addEventListener("click", closeAddCardPopup);
 }
 
+//PROFILE PIC
+//function to open popup when editing profile pic
+function handleEditProfilePic() {
+  updateProfilePicPopup.open();
+}
+
+//option to update URL for profile pic
+function updateProfilePic() {
+  const avatarUrl = document.querySelector("#input-avatar-url");
+  const api = new Api(
+    "https://around.nomoreparties.co/v1/web_es_05",
+    "fccf719e-8a78-41bc-841c-fef7866c1b1f"
+  );
+  api.updateProfilePic(avatarUrl.value).then(() => {
+    const imageElement = document.querySelector(".profile__pic-img");
+    imageElement.src = avatarUrl.value;
+  });
+}
 function closeAddCardPopup() {
   addCardPopup.close();
 }

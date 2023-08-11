@@ -82,4 +82,17 @@ export class Api {
       },
     });
   }
+
+  updateProfilePic(url) {
+    return fetch(this.url + "/users/me/avatar", {
+      method: "PATCH",
+      headers: {
+        authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        avatar: url,
+      }),
+    });
+  }
 }
