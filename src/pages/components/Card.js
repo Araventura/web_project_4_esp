@@ -101,7 +101,6 @@ export class Card {
       this._cardLike();
     }
     //aqui se agregaria el count like
-    console.log(this._likes);
   }
 
   _handleDeleteCard() {
@@ -144,12 +143,9 @@ export class Card {
   _updateLikeStatus() {
     const cardImage = this.element.querySelector(".card__like");
 
-    console.log("likessss", this._likes);
-
     // esta condicion tiene que buscar por un ID dentro de un array de objetos!!!!
     if (this._likes.some((like) => like._id === "aff1383f05db104e89f933b0")) {
       cardImage.classList.add("card__like_active");
-      console.log("hola desde if inclues likes");
     } else {
       cardImage.classList.remove("card__like_active");
     }

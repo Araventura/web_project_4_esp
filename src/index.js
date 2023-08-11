@@ -40,7 +40,6 @@ api
   })
   .then((res) => {
     renderInitialCards(res);
-    console.log(res);
   });
 
 //  Render initial cards
