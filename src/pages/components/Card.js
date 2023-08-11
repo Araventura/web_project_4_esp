@@ -69,25 +69,39 @@ export class Card {
     cardImage.alt = this._text;
     cardImage.src = this._url;
     this._setCardLikes();
+    this._updateLikeStatus();
     return this.element;
   }
 
   //aqui iria la clase de form-delete-image
 
   _cardLikeButton(e) {
-    const cardImage = this.element.querySelector(".card__like");
-
-    if (this._likes.includes("fccf719e-8a78-41bc-841c-fef7866c1b1f")) {
+    if (this._likes.some((like) => like._id === "aff1383f05db104e89f933b0")) {
       // quitar del array
-      const index = this._likes.indexOf("fccf719e-8a78-41bc-841c-fef7866c1b1f");
+
+      let index = -1;
+      this._likes.forEach((like, i) => {
+        if (like._id === "aff1383f05db104e89f933b0") {
+          index = i;
+        }
+      });
       this._likes.splice(index, 1);
+      this._cardDislike();
       //hace toggle para quitarlo del array
     } else {
-      this._likes.push("fccf719e-8a78-41bc-841c-fef7866c1b1f");
+      const likeObject = {
+        name: "ara",
+        about: "Sailor, webdev",
+        avatar:
+          "https://pictures.s3.yandex.net/frontend-developer/common/ava.jpg",
+        _id: "aff1383f05db104e89f933b0",
+        cohort: "web_es_05",
+      };
+      this._likes.push(likeObject);
+      this._cardLike();
     }
-    this._setCardLikes();
-    cardImage.classList.toggle("card__like_active");
     //aqui se agregaria el count like
+    console.log(this._likes);
   }
 
   _handleDeleteCard() {
@@ -103,5 +117,41 @@ export class Card {
   _setCardLikes() {
     const cardLike = this.element.querySelector(".card__counter_likes");
     cardLike.textContent = this._likes.length;
+  }
+
+  _cardDislike() {
+    const cardImage = this.element.querySelector(".card__like");
+    this._api
+      .cardDislike(this._id)
+      .then(() => {
+        cardImage.classList.remove("card__like_active");
+        this._setCardLikes();
+      })
+      .catch((res) => console.log("Error disliking image" + res));
+  }
+
+  _cardLike() {
+    const cardImage = this.element.querySelector(".card__like");
+    this._api
+      .cardLike(this._id)
+      .then(() => {
+        cardImage.classList.add("card__like_active");
+        this._setCardLikes();
+      })
+      .catch((res) => console.log("Error liking image" + res));
+  }
+
+  _updateLikeStatus() {
+    const cardImage = this.element.querySelector(".card__like");
+
+    console.log("likessss", this._likes);
+
+    // esta condicion tiene que buscar por un ID dentro de un array de objetos!!!!
+    if (this._likes.some((like) => like._id === "aff1383f05db104e89f933b0")) {
+      cardImage.classList.add("card__like_active");
+      console.log("hola desde if inclues likes");
+    } else {
+      cardImage.classList.remove("card__like_active");
+    }
   }
 }
