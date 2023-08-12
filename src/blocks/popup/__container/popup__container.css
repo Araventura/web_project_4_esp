@@ -1,7 +1,7 @@
 .popup__container {
     background-color: white;
     width: 430px;
-    height: 330px;
+    height: auto;
     border-radius: 10px;
     color: black;
     display: flex;
