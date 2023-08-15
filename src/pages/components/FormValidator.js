@@ -44,6 +44,7 @@ export class FormValidator {
     const inputWrapper = this._formElement.querySelector(
       `#${inputElement.id}-wrapper`
     );
+
     const errorElement = inputWrapper.querySelector(
       `.popup__${inputElement.id}-error-message`
     );
@@ -68,14 +69,26 @@ export class FormValidator {
     const popupInputs = Array.from(
       this._formElement.querySelectorAll(".popup__input-wrapper .popup__input")
     );
-    if (!popupInputs[0].validity.valid || !popupInputs[1].validity.valid) {
-      const formButton = this._formElement.querySelector(".popup__button");
-      formButton.setAttribute("disabled", true);
-      formButton.classList.add("popup__button-inactive");
+    if (popupInputs.length > 1) {
+      if (!popupInputs[0].validity.valid || !popupInputs[1]?.validity.valid) {
+        const formButton = this._formElement.querySelector(".popup__button");
+        formButton.setAttribute("disabled", true);
+        formButton.classList.add("popup__button-inactive");
+      } else {
+        const formButton = this._formElement.querySelector(".popup__button");
+        formButton.removeAttribute("disabled");
+        formButton.classList.remove("popup__button-inactive");
+      }
     } else {
-      const formButton = this._formElement.querySelector(".popup__button");
-      formButton.removeAttribute("disabled");
-      formButton.classList.remove("popup__button-inactive");
+      if (!popupInputs[0].validity.valid) {
+        const formButton = this._formElement.querySelector(".popup__button");
+        formButton.setAttribute("disabled", true);
+        formButton.classList.add("popup__button-inactive");
+      } else {
+        const formButton = this._formElement.querySelector(".popup__button");
+        formButton.removeAttribute("disabled");
+        formButton.classList.remove("popup__button-inactive");
+      }
     }
   }
 
