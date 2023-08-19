@@ -17,6 +17,6 @@
     opacity: 0.8;
 }
 
-.profile__pic:hover .profile__button-edit_state_hovered {
+.profile__pic:hover .profile__pic-button_state_hovered {
     display: block;
 }
