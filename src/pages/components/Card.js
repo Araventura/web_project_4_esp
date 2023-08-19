@@ -142,8 +142,6 @@ export class Card {
 
   _updateLikeStatus() {
     const cardImage = this.element.querySelector(".card__like");
-
-    // esta condicion tiene que buscar por un ID dentro de un array de objetos!!!!
     if (this._likes.some((like) => like._id === "aff1383f05db104e89f933b0")) {
       cardImage.classList.add("card__like_active");
     } else {

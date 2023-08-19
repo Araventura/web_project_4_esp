@@ -4,6 +4,7 @@ import { Card } from "./components/Card.js";
 import { PopupWithForm } from "./components/PopupWithForm.js";
 import { PopupWithImage } from "./components/PopupWithImage.js";
 import { Api } from "./components/Api.js";
+import { refreshCards } from "../index.js";
 
 const popupWithImage = new PopupWithImage(".cover");
 
@@ -25,7 +26,10 @@ const handleAddCard = (e) => {
     (e) => {
       // funcion que llama a popupwithImage & open y pasa el evento como parametro
       popupWithImage.open(e);
-    }
+    },
+    [],
+    "",
+    "aff1383f05db104e89f933b0" //pasar el resto de los parametros AQUI
   );
   //pasar funcion que crea card y popula con info la nueva card
   //const
@@ -39,6 +43,14 @@ const handleAddCard = (e) => {
       return res.json();
     })
     .then((res) => {
+      api
+        .loadCards()
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          refreshCards(res);
+        });
       console.log(res);
     });
 
@@ -97,7 +109,9 @@ function updateProfilePic() {
     const imageElement = document.querySelector(".profile__pic-img");
     imageElement.src = avatarUrl.value;
   });
+  //document.querySelector()
 }
+
 function closeAddCardPopup() {
   addCardPopup.close();
 }

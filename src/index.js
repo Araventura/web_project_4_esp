@@ -39,12 +39,15 @@ api
     return res.json();
   })
   .then((res) => {
-    renderInitialCards(res);
+    refreshCards(res);
   });
 
 //  Render initial cards
 // Function render Initial Cards obtains data for each and every card available in the object.
-function renderInitialCards(cards) {
+export function refreshCards(cards) {
+  const cardList = document.querySelector(".card");
+  cardList.innerHTML = "";
+
   cards.forEach((dataCard) => {
     const card = new Card(
       dataCard.name,
@@ -60,7 +63,8 @@ function renderInitialCards(cards) {
     );
 
     const cardElement = card.generateCard();
-    document.querySelector(".card").append(cardElement);
+
+    cardList.append(cardElement);
   });
 }
 
