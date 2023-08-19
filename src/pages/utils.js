@@ -40,6 +40,7 @@ const handleAddCard = (e) => {
     .then((res) => {
       const cardElement = card.generateCard();
       document.querySelector(".card").prepend(cardElement);
+      document.querySelector("#create-card-button").textContent = "Crear";
       return res.json();
     })
     .then((res) => {
@@ -54,6 +55,7 @@ const handleAddCard = (e) => {
       console.log(res);
     });
 
+  document.querySelector("#create-card-button").textContent = "Guardando...";
   //pone card antes de lista de cards
 
   addCardPopup.close();
@@ -108,8 +110,12 @@ function updateProfilePic() {
   api.updateProfilePic(avatarUrl.value).then(() => {
     const imageElement = document.querySelector(".profile__pic-img");
     imageElement.src = avatarUrl.value;
+    updateProfilePicPopup.close();
+    document.querySelector("#edit-profile-pic-button").textContent =
+      "Guardar perfil";
   });
-  //document.querySelector()
+  document.querySelector("#edit-profile-pic-button").textContent =
+    "Guardando...";
 }
 
 function closeAddCardPopup() {
@@ -161,10 +167,12 @@ function saveProfileDetails(e) {
       profileName.textContent = nameInput.value;
       profileInfo.textContent = descriptionInput.value;
       editProfilePopup.close();
+      document.querySelector("#edit-profile-button").textContent = "Guardar";
     })
     .catch((res) => {
       console.log("Error saving: ", res);
     });
+  document.querySelector("#edit-profile-button").textContent = "Guardando...";
 }
 
 function openAddCardPopup() {

@@ -109,8 +109,10 @@ export class Card {
       .then(() => {
         this.element.remove();
         this._popup.close();
+        document.querySelector("#delete-image-button").textContent = "Si";
       })
       .catch((res) => console.log("Error deleting image" + res));
+    document.querySelector("#delete-image-button").textContent = "Borrando...";
   }
 
   _setCardLikes() {
