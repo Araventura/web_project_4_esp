@@ -1,13 +1,12 @@
 export class Api {
-  //crea un constructor que reciba
   //crea tres metodos loadCards/addCard/deleteCard/getUserData
   constructor(url, token) {
     this.url = url;
     this.token = token;
   }
 
-  getUserData() {
-    return fetch(this.url + "/users/me", {
+  getData(url) {
+    return fetch(this.url + url, {
       method: "GET",
       headers: {
         authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
@@ -15,14 +14,25 @@ export class Api {
     });
   }
 
+  getUserData() {
+    return this.getData("/users/me");
+    // fetch(this.url + "/users/me", {
+    //   method: "GET",
+    //   headers: {
+    //     authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
+    //   },
+    // });
+  }
+
   loadCards() {
-    return fetch(this.url + "/cards", {
-      method: "GET",
-      headers: {
-        authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
-        mode: "no-cors",
-      },
-    });
+    return this.getData("/cards");
+    // return fetch(this.url + "/cards", {
+    //   method: "GET",
+    //   headers: {
+    //     authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
+    //     mode: "no-cors",
+    //   },
+    // });
   }
 
   addCard(name, link) {
@@ -32,10 +42,7 @@ export class Api {
         authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
         "content-type": "application/json",
       },
-      body: JSON.stringify({
-        name: name,
-        link: link,
-      }),
+      body: JSON.stringify({ name, link }),
     });
   }
 
@@ -94,5 +101,12 @@ export class Api {
         avatar: url,
       }),
     });
+  }
+
+  handleResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
   }
 }

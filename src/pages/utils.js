@@ -41,13 +41,13 @@ const handleAddCard = (e) => {
       const cardElement = card.generateCard();
       document.querySelector(".card").prepend(cardElement);
       document.querySelector("#create-card-button").textContent = "Crear";
-      return res.json();
+      return api.handleResponse(res);
     })
     .then((res) => {
       api
         .loadCards()
         .then((res) => {
-          return res.json();
+          return api.handleResponse(res);
         })
         .then((res) => {
           refreshCards(res);

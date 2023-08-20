@@ -19,7 +19,7 @@ const api = new Api(
 api
   .getUserData()
   .then((res) => {
-    return res.json();
+    return api.handleResponse(res);
   })
   .then((res) => {
     const profilename = document.querySelector(".profile__name");
@@ -36,7 +36,7 @@ api
 api
   .loadCards()
   .then((res) => {
-    return res.json();
+    return api.handleResponse(res);
   })
   .then((res) => {
     refreshCards(res);
