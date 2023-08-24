@@ -5,86 +5,95 @@ export class Api {
     this.token = token;
   }
 
-  getData(url) {
-    return fetch(this.url + url, {
-      method: "GET",
-      headers: {
-        authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
-      },
-    });
+  makeApiCall(payload) {
+    if (payload.body) {
+      return fetch(`${this.url}${payload.url}${payload.id ? payload.id : ""}`, {
+        method: payload.method,
+        headers: {
+          authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(payload.body),
+      });
+    } else {
+      return fetch(`${this.url}${payload.url}${payload.id ? payload.id : ""}`, {
+        method: payload.method,
+        headers: {
+          authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
+          "content-type": "application/json",
+        },
+      });
+    }
   }
 
   getUserData() {
-    return this.getData("/users/me");
+    const payload = {
+      method: "GET",
+      url: "/users/me",
+    };
+    return this.makeApiCall(payload);
   }
 
   loadCards() {
-    return this.getData("/cards");
-  }
-
-  toggleCardLike(id, method) {
-    return fetch(this.url + "/cards/likes/" + id, {
-      method: method,
-      headers: {
-        authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
-        "content-type": "application/json",
-      },
-    });
+    const payload = {
+      method: "GET",
+      url: "/cards",
+    };
+    return this.makeApiCall(payload);
   }
 
   cardLike(id) {
-    return this.toggleCardLike(id, "PUT");
+    const payload = {
+      method: "PUT",
+      id,
+      url: "/cards/likes/",
+    };
+    return this.makeApiCall(payload);
   }
 
   cardDislike(id) {
-    return this.toggleCardLike(id, "DELETE");
+    const payload = {
+      method: "DELETE",
+      id,
+      url: "/cards/likes/",
+    };
+    return this.makeApiCall(payload);
   }
 
-  //////// Metodos que hacen cosas conceptualmente distintas, tienes alguna sugerencia de como hacerlo menos repetitivo? - SM
-
   addCard(name, link) {
-    return fetch(this.url + "/cards", {
+    const payload = {
       method: "POST",
-      headers: {
-        authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ name, link }),
-    });
+      url: "/cards",
+      body: { name, link },
+    };
+    return this.makeApiCall(payload);
   }
 
   editProfile(name, about) {
-    return fetch(this.url + "/users/me", {
+    const payload = {
       method: "PATCH",
-      headers: {
-        authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ name, about }),
-    });
+      url: "/users/me",
+      body: { name, about },
+    };
+    return this.makeApiCall(payload);
   }
 
   deleteCard(id) {
-    return fetch(this.url + "/cards/" + id, {
+    const payload = {
       method: "DELETE",
-      headers: {
-        authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
-        "content-type": "application/json",
-      },
-    });
+      url: "/cards/",
+      id,
+    };
+    return this.makeApiCall(payload);
   }
 
   updateProfilePic(url) {
-    return fetch(this.url + "/users/me/avatar", {
+    const payload = {
       method: "PATCH",
-      headers: {
-        authorization: "fccf719e-8a78-41bc-841c-fef7866c1b1f",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        avatar: url,
-      }),
-    });
+      url: "/users/me/avatar",
+      body: { avatar: url },
+    };
+    return this.makeApiCall(payload);
   }
 
   handleResponse(res) {
